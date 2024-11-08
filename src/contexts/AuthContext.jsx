@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export function AuthProvider({ children }) {
   const [is_logueado, setIsLogueado] = useState(false);
 
@@ -20,6 +21,7 @@ export function AuthProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   return useContext(AuthContext);
 }

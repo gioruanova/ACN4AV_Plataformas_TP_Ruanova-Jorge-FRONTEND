@@ -22,6 +22,7 @@ export function useMenu() {
   };
 }
 
+// Metodo que agrega estilos segun la instancia del sitio
 export function useActiveLink() {
   const location = useLocation();
   const isActiveLink = (path) => location.pathname === path;

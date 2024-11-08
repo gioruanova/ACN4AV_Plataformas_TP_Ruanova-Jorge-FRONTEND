@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useMenu, useActiveLink } from "../hooks/useMenu"; // Importa los hooks
+import { useMenu, useActiveLink } from "../hooks/useMenu";
 
 export default function Header() {
   const { is_logueado, logout } = useAuth();
 
-  // Usa los hooks extraídos
+  // Hooks para aplicar algunos efectos al menu
   const { isOpen, toggleMenu, toggleMenuOut } = useMenu();
   const isActiveLink = useActiveLink();
 
@@ -18,7 +18,6 @@ export default function Header() {
     navigate("/login");
   };
 
-  // currentStage = isActiveLink("/") ? "" : to="";
 
   return (
     <div
@@ -27,7 +26,6 @@ export default function Header() {
     >
       <div id="navegacion-conent">
         <div className="main-header">
-          {/* <Link  className={isActiveLink("/") ? "header-logo currentStage" : "header-logo"}>sasa</Link> */}
 
           {isActiveLink("/") ? (
             <span className="header-logo currentStage" aria-label="Central de Reservas" alt="Central de Reservas" title="Central de Reservas"></span>

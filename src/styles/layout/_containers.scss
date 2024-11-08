@@ -61,7 +61,6 @@ body {
 
 .glass-container {
   &.content {
-    // height: 95%;
     div {
       transition: $defaultTransition;
       animation: fadeIn 800ms ease-in-out;
