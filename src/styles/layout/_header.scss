@@ -22,12 +22,20 @@
     background-repeat: no-repeat;
     background-position: center;
     transition: $defaultTransition;
+    &.currentStage {
+      cursor: default;
+    }
 
     &:hover {
       transform: scale(1.2);
       transition: $defaultTransition;
       filter: drop-shadow(0 0 5px $baseColor);
       margin-right: 5px;
+      &.currentStage {
+        transform: none;
+        margin: 0;
+        filter: none;
+      }
     }
   }
 

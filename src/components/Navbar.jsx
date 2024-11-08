@@ -20,7 +20,12 @@ export default function Navbar({ onNavClick }) {
     <div className="glass-container">
       <div id="navegacion-conent">
         <div className="main-header">
-          <Link to="/" className="header-logo"></Link>
+          <Link
+            to="/"
+            onClick={() => handleClick("/")}
+            className={`header-logo ${getActiveClass("/")}`}
+          ></Link>
+
           <div className="user-info">
             <span>Jorge</span>
             <span>Ruanova</span>
@@ -41,7 +46,11 @@ export default function Navbar({ onNavClick }) {
             onClick={() => handleClick("/turnos")}
             className={getActiveClass("/turnos")}
           >
-            {!isMedico ? <span>Mis Turnos</span> : <span>Turnos Asignados</span>}
+            {!isMedico ? (
+              <span>Mis Turnos</span>
+            ) : (
+              <span>Turnos Asignados</span>
+            )}
           </Link>
 
           <Link
