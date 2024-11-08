@@ -1,3 +1,7 @@
 export default function Contacto() {
-  return <div>Contacto</div>;
+  return (
+    <div>
+      <h1>Contacto</h1>
+    </div>
+  );
 }

@@ -12,6 +12,52 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    .toggle {
+      display: none;
+      @media screen and (max-width: 850px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &:hover {
+          div {
+            background-color: $mainColor;
+          }
+        }
+      }
+      div {
+        height: 4px;
+        width: 30px;
+        border-radius: 10px;
+        background-color: $secondaryColorDark;
+        margin: 3px 0;
+        transition: $defaultTransition;
+        position: relative;
+      }
+      &.openMenu {
+        div {
+          transition: $defaultTransition;
+          &:nth-child(1) {
+            transform: rotate(-45deg);
+          }
+          &:nth-child(2) {
+            display: none;
+          }
+          &:nth-child(3) {
+            transform: rotate(45deg);
+            top: -10px;
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 850px) {
+      align-self: baseline;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 
   .header-logo {
@@ -53,6 +99,17 @@
     padding: 0;
     margin: 0;
     display: flex;
+    overflow: hidden;
+
+    @media screen and (max-width: 850px) {
+      height: 0;
+      transition: $defaultTransition;
+      text-align: center;
+    }
+    &.openMenu {
+      transition: $defaultTransition;
+      height: 300px;
+    }
 
     a {
       color: $secondaryColorDark;
@@ -84,7 +141,30 @@
 
     @media screen and (max-width: 850px) {
       flex-direction: column;
-      margin-top: 1rem;
     }
   }
+}
+
+.glass-container {
+  &.navbar {
+    margin-top: 1rem;
+    @media screen and (max-width: 850px) {
+      position: fixed;
+      top: 0;
+      bottom: auto;
+      height: 90px;
+      z-index: 99;
+      left: 50%;
+      justify-content: flex-start;
+      transform: translate(-50%, 0px);
+      transition: $defaultTransition;
+      align-items: center;
+    }
+  }
+}
+
+.navbar.openMenu {
+  justify-content: flex-start;
+  transition: $defaultTransition;
+  height: 95vh;
 }

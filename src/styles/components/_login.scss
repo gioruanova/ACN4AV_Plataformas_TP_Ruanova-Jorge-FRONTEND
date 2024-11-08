@@ -1,126 +1,110 @@
 .main-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+
+  .login-container {
+    left: 0;
+    height: 100%;
+    max-width: 500px;
+    width: 75%;
+    padding: 20px 70px;
+    box-sizing: border-box;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 100%;
     flex-direction: column;
     justify-content: center;
-    height: 100vh;
-    @include cloudsEffect();
+    align-items: center;
+    text-align: center;
 
+    @media screen and (max-width: 800px) {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 4px;
+      padding: 20px 1%;
 
-    .login-container {
-        background: rgba(255, 255, 255, 0.28);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(13px);
-        -webkit-backdrop-filter: blur(13px);
-        border: 1px solid rgba(255, 255, 255, 0.267);
-        left: 0;
-        height: 100%;
-        max-width: 500px;
-        width: 75%;
-        padding: 20px 70px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+      h1 {
+        font-size: 20px;
+      }
 
-        @media screen and (max-width:800px) {
-            position: relative;
-            width: 90%;
-            max-width: 100%;
-            height: auto;
-            margin: 0 auto;
-            border-radius: 4px;
-            padding: 20px 8%;
+      span {
+        font-size: 12px;
+      }
+    }
+  }
 
-            h1 {
-                font-size: 20px;
-            }
+  .wrap-content {
+    display: flex;
+    flex-direction: column;
 
-            span {
-                font-size: 12px;
-            }
+    .login-user {
+      display: flex;
+      flex-direction: column;
+      max-width: 390px;
+      width: 100%;
+      margin: 30px auto 0;
 
-
-        }
+      @media screen and (max-width: 800px) {
+        margin-top: 20px;
+      }
     }
 
-    .wrap-content {
-        display: flex;
-        flex-direction: column;
+    .btn-container {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
 
-        .login-user {
-            display: flex;
-            flex-direction: column;
-            max-width: 390px;
-            width: 100%;
-            margin: 30px auto 0;
+      @media screen and (max-width: 800px) {
+        flex-direction: column-reverse;
+        margin-top: 0;
 
-            @media screen and (max-width:800px) {
-                margin-top: 20px;
-            }
+        .fgt-pass {
+          margin: 10px 0 20px;
         }
+      }
 
-        .btn-container {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-
-            @media screen and (max-width:800px) {
-                flex-direction: column;
-                margin-top: 0;
-
-                .fgt-pass {
-                    margin-top: 10px;
-                }
-            }
-
-            .fgt-pass {
-                font-size: 14px;
-                color: $secondaryColorDark;
-            }
-        }
+      .fgt-pass {
+        font-size: 14px;
+        color: $secondaryColorDark;
+      }
     }
-
-
+  }
 }
 
-
 .mobile-app {
-    display: none;
+  display: none;
 
-    @media screen and (max-width:800px) {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        margin-top: 2rem;
-        text-decoration: none;
+  @media screen and (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    text-decoration: none;
 
-        &:hover {
-            text-decoration: none;
-        }
+    &:hover {
+      text-decoration: none;
     }
+  }
 
+  img {
+    max-width: 185px;
+    height: 55px;
+    object-fit: contain;
+    width: 100%;
+    margin: 10px;
+  }
 
-
-    img {
-        max-width: 185px;
-        height: 55px;
-        object-fit: contain;
-        width: 100%;
-        margin: 10px;
-    }
-
-    h2 {
-        font-size: 15px;
-        margin: 0;
-    }
-
+  h2 {
+    font-size: 15px;
+    margin: 0;
+  }
 }

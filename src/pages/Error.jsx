@@ -1,6 +1,7 @@
-
 export default function Error() {
   return (
-    <div>Error</div>
-  )
+    <div>
+      <h1> ERROR</h1>
+    </div>
+  );
 }

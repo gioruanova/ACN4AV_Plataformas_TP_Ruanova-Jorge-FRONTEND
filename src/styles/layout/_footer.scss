@@ -1,18 +1,20 @@
 .glass-container {
-    &.footer {
-        margin-top: 1rem;
-        box-sizing: border-box;
+  &.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    a {
+      text-decoration: none;
+      color: $secondaryColorDark;
+      font-weight: 700;
+      transition: $defaultTransition;
 
-        a {
-            text-decoration: none;
-            color: $secondaryColorDark;
-            font-weight: 700;
-            transition: $defaultTransition;
-
-            &:hover {
-                transition: $defaultTransition;
-                font-size: 17px;
-            }
-        }
+      &:hover {
+        transition: $defaultTransition;
+        font-size: 17px;
+      }
     }
+  }
 }

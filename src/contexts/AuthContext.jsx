@@ -1,30 +1,25 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
-export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null); 
+export function AuthProvider({ children }) {
+  const [is_logueado, setIsLogueado] = useState(false);
 
-
-  const login = (userData) => {
-    setIsAuthenticated(true);
-    setUser(userData); 
+  const login = () => {
+    setIsLogueado(true);
   };
+
   const logout = () => {
-    setIsAuthenticated(false);
-    setUser(null); 
+    setIsLogueado(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user,login, logout }}>
+    <AuthContext.Provider value={{ is_logueado, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useAuth = () => {
+export function useAuth() {
   return useContext(AuthContext);
-};
+}
