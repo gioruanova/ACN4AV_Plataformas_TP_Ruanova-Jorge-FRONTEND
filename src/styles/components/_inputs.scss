@@ -1,0 +1,49 @@
+.inputWrap {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width:600px) {
+        margin-bottom: 20px;
+    }
+
+    input {
+        background: none;
+        border: none;
+        height: 26px;
+        padding: 0 10px;
+        border-radius: 2px;
+        box-shadow: 2px 2px 7px 1px #ddddddb0;
+        box-sizing: border-box;
+    }
+
+    label {
+        min-width: 100px;
+        text-align: justify;
+        font-size: 14px;
+        font-weight: 500;
+
+        @media screen and (max-width:600px) {
+            min-width: auto;
+            margin-bottom: 10px;
+        }
+    }
+
+
+
+    &.inputUser,
+    &.inputPassword {
+        @media screen and (max-width:600px) {
+            flex-direction: column;
+
+            input {
+                text-align: center;
+            }
+        }
+
+        input {
+            width: 100%;
+        }
+    }
+}

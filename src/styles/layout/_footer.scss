@@ -1,0 +1,18 @@
+.glass-container {
+    &.footer {
+        margin-top: 1rem;
+        box-sizing: border-box;
+
+        a {
+            text-decoration: none;
+            color: $secondaryColorDark;
+            font-weight: 700;
+            transition: $defaultTransition;
+
+            &:hover {
+                transition: $defaultTransition;
+                font-size: 17px;
+            }
+        }
+    }
+}

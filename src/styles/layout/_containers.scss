@@ -1,0 +1,57 @@
+body {
+  background-color: $baseColor;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  overflow-y: auto;
+
+  @media screen and (max-width: 800px) {
+    background-image: url("/images/clouds1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.notHome {
+  background-image: url("/images/clouds1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  display: inherit;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+.glass-container {
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(13px);
+  -webkit-backdrop-filter: blur(13px);
+  border: 1px solid rgba(255, 255, 255, 0.267);
+  left: 0;
+  height: 100%;
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+.glass-container {
+  &.content {
+    margin-top: 1rem;
+    min-height: 72vh;
+  }
+}

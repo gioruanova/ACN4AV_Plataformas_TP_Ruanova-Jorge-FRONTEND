@@ -1,0 +1,64 @@
+@use "./fonts";
+
+$defaultFontFamily: fonts.$mainFont;
+$defaultFontColor: $secondaryColorDark;
+$headingColors: $secondaryColor;
+$headingFontFamily: $mainFont2;
+
+$h1Size: px-to-rem(38);
+$h2Size: px-to-rem(28);
+$h3Size: px-to-rem(26);
+
+body {
+    font-size: 16px;
+    font-family: $defaultFontFamily;
+    color: $defaultFontColor;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $headingColors;
+    font-family: $headingFontFamily;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: clamp(1.80rem, calc(1.41rem + 1.39vw), $h1Size);
+}
+
+h2 {
+    font-size: clamp(1.60rem, calc(1.33rem + 0.96vw), $h2Size);
+}
+
+h3 {
+    font-size: clamp(1.42rem, calc(1.25rem + 0.62vw), $h3Size);
+}
+
+h4 {
+    font-size: clamp(1.27rem, calc(1.17rem + 0.35vw), 1.44rem);
+}
+
+h5 {
+    font-size: clamp(1.13rem, calc(1.08rem + 0.15vw), 1.20rem);
+
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+a {
+    color: $alternativeColor;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

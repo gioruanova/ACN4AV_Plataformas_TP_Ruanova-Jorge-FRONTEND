@@ -1,0 +1,18 @@
+@use 'sass:list';
+@use 'sass:color';
+
+@function px-to-rem($px-value) {
+  @return calc($px-value / 16) + rem;
+}
+
+@function create-font-color($base-color) {
+  @if list.length($base-color) > 1 {
+    $base-color: list.nth(list.nth($base-color, 1), 1);
+  }
+
+  @if color.lightness($base-color) > 50 {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
