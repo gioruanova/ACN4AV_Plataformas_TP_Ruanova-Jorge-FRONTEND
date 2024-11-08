@@ -1,10 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 // eslint-disable-next-line react/prop-types
 export default function Navbar({ onNavClick }) {
-  const isMedico = false;
-  const location = useLocation(); // Obtén la ubicación actual
+  const { user, logout } = useAuth();
 
+  // manejo de estilos
+  const isMedico = false;
+  const location = useLocation();
+
+  // manejo de estilos
   const getActiveClass = (to) => {
     return location.pathname === to ? "currentStage" : "";
   };
@@ -16,27 +21,44 @@ export default function Navbar({ onNavClick }) {
     onNavClick();
   };
 
+  // manejo de logout
+  const handleLogOut = () => {
+    console.log("Saliendo...");
+    logout();
+  };
+
   return (
     <div className="glass-container">
       <div id="navegacion-conent">
         <div className="main-header">
           <Link
-            to="/"
-            onClick={() => handleClick("/")}
-            className={`header-logo ${getActiveClass("/")}`}
+            to="/inicio"
+            onClick={() => handleClick("/inicio")}
+            className={`header-logo ${getActiveClass("/inicio")}`}
           ></Link>
 
           <div className="user-info">
-            <span>Jorge</span>
-            <span>Ruanova</span>
-            <span>Admin</span>
+            <div className="user-info">
+              {user ? (
+                <>
+                  <span>DNI: {user.dni}</span>
+                  <span>
+                    {user.esMedico ? "Dr. " : ""}
+                    {user.nombre} {user.apellido}
+                  </span>
+                  <span>{user.email}</span>
+                </>
+              ) : (
+                <span>Invitado</span>
+              )}
+            </div>
           </div>
         </div>
         <ul className="nav-items">
           <Link
-            to="/"
-            onClick={() => handleClick("/")}
-            className={getActiveClass("/")}
+            to="/inicio"
+            onClick={() => handleClick("/inicio")}
+            className={getActiveClass("/inicio")}
           >
             <span>Inicio</span>
           </Link>
@@ -72,7 +94,7 @@ export default function Navbar({ onNavClick }) {
           <Link
             to=""
             id="logoff"
-            onClick={() => handleClick("")}
+            onClick={() => handleLogOut("")}
             className={getActiveClass("")}
           >
             <span>Salir</span>

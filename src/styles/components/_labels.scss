@@ -1,0 +1,28 @@
+.error-message {
+  display: flex;
+  justify-content: center;
+  margin: 0px auto 0px;
+  max-width: 320px;
+  height: 0px;
+  transition: $defaultTransition;
+  &.notShow {
+    opacity: 0;
+    transition: $defaultTransition;
+  }
+
+  &.show {
+    opacity: 1;
+    transition: $defaultTransition;
+    margin: 20px auto 10px;
+    height: 30px;
+
+  }
+
+  span {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: $white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+}

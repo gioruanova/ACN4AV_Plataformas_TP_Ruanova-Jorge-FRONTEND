@@ -1,21 +1,23 @@
-import Login from "./components/Login";
 import { BrowserRouter } from "react-router-dom";
 import Rutas from "./routes/Rutas";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Content from "./components/Content";
 import { useContentAnimation, useBodyClass } from "./hooks/useAnimationHooks";
+import { useAuth } from "./contexts/AuthContext";
+import Login from "./components/Login";
 
 function App() {
-  const login = true;
+  const { isAuthenticated } = useAuth();
 
-  useBodyClass("notHome", login);
+  useBodyClass("notHome", isAuthenticated);
   const [contentClass, handleNavClick] = useContentAnimation();
 
   return (
     <BrowserRouter>
-      {!login ? <Login /> : null}
-      {login && (
+      {!isAuthenticated ? (
+        <Login />
+      ) : (
         <>
           <Navbar onNavClick={handleNavClick} />
           <Content contentClass={contentClass}>

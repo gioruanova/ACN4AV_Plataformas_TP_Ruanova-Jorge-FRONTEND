@@ -47,6 +47,9 @@ body {
   text-align: center;
   margin-top: 1rem;
   border-radius: 4px;
+  .notHome &{
+    background: rgb(255 255 255 / 69%);
+  }
 }
 
 .glass-container {
