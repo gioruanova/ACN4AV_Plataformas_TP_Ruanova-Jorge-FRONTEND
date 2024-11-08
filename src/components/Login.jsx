@@ -1,8 +1,8 @@
 
 const Login = () => {
   return (
-<div className="main-login" id="login-content">
-      <div className="login-container">
+<div id="login-content" className="main-login  animate__animated animate__fadeIn">
+      <div className="login-container animate__animated animate__bounceInDown">
         <div className="wrap-content">
           <h1>Bienvenido a Central de turnos</h1>
           <span>Ingrese sus credenciales para ingresar al portal</span>
