@@ -1,10 +1,10 @@
-import VolverAlDashboard from "../components/VolverAlDashboard";
+import BotonVolver from "../components/BotonVolver";
 
 export default function GestionEspacios() {
   return (
     <div className="subContainer">
       <h1>Gestion de Espacios</h1>
-      <VolverAlDashboard />
+      <BotonVolver ruta={"dashboard"} />
     </div>
   );
 }

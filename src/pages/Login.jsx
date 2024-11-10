@@ -2,6 +2,8 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAnimationContent from "../hooks/useAnimationContent";
+import BotonVolver from "../components/BotonVolver";
+
 
 
 export default function Login() {
@@ -62,6 +64,8 @@ export default function Login() {
           </form>
         </div>
       </div>
+      <BotonVolver ruta={""} />
+
     </div>
   );
 }

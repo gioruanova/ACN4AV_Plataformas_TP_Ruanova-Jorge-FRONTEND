@@ -1,10 +1,10 @@
-import VolverAlDashboard from "../components/VolverAlDashboard";
+import BotonVolver from "../components/BotonVolver";
 
 export default function MisDatos() {
   return (
     <div className="subContainer">
       <h1>Mis datos</h1>
-      <VolverAlDashboard />
+      <BotonVolver ruta={"dashboard"} />
     </div>
   );
 }

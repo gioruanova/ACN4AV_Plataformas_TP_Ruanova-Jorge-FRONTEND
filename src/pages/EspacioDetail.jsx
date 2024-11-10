@@ -2,10 +2,11 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { rangosHorarios, listadoSalas } from "../data/Database";
 import useAnimationContent from "../hooks/useAnimationContent";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomToast from "../hooks/customToast";
 import validarDisponibilidad from "../helpers/Validadores";
 import Spinner from "../components/Spinner";
+import BotonVolver from "../components/BotonVolver";
 
 // manejar reserva
 function handleReserva(
@@ -129,8 +130,6 @@ export default function EspacioDetail() {
         <h1>Elegi los datos de tu reserva</h1>
 
         <div className="formulario-reserva">
-        
-
           <form className="formulario">
             <div className="inputWrap reserva-date">
               <label htmlFor="fecha" id="fecha">
@@ -183,9 +182,7 @@ export default function EspacioDetail() {
                 Reservar
               </button>
 
-              <Link to="/espacios" className="btnBase disrruptive">
-                <span>Volver</span>
-              </Link>
+              <BotonVolver ruta={"espacios"} />
             </div>
           </form>
           <CustomToast

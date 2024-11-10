@@ -1,10 +1,10 @@
-import VolverAlDashboard from "../components/VolverAlDashboard";
+import BotonVolver from "../components/BotonVolver";
 
 export default function GestionUsuarios() {
   return (
     <div className="subContainer">
       <h1>Gestion de Usuarios</h1>
-      <VolverAlDashboard />
+      <BotonVolver ruta={"dashboard"} />
     </div>
   );
 }
