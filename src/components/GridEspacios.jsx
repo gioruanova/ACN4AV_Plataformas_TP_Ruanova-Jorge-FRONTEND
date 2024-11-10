@@ -1,4 +1,4 @@
-import { listadoReservas, listadoSalas } from "../data/Database";
+import { listadoSalas } from "../data/Database";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../hooks/customToast";
@@ -42,30 +42,12 @@ export default function GridEspacios() {
 
   return (
     <>
-      <div>
-        {listadoReservas.map((reserva) => (
-          <div key={reserva.reserva_id}>
-            <div>Reserva: {reserva.reserva_id}</div>
-            <div>Id Sala: {reserva.sala_id}</div>
-            <div>Fecha: {reserva.sala_fecha}</div>
-            <div>Hora: {reserva.sala_hora}</div>
-            <div>Usuario: {reserva.usaurio_id}</div>
-            <hr />
-          </div>
-        ))}
-      </div>
-
-      {/* ----------- */}
-      {/* ----------- */}
-
       {listadoSalas.map((space) => (
         <div className="card-salas" key={space.id}>
           {space.destacado && <span className="tag-destacado">Destacada</span>}{" "}
-          <img
-            src={space.imagen_space}
-            alt={space.name}
-            className="imagen-space"
-          />
+          <div className="imagen-space">
+            <img src={space.imagen_space} alt={space.name} />
+          </div>
           <div className={is_logueado ? "card-content" : "card-content noBtn"}>
             <h4>{space.name}</h4>
             <div className="bottom-data">

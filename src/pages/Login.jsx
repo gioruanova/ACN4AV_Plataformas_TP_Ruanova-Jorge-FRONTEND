@@ -12,6 +12,7 @@ function errorEffect(setClass) {
   }, 2000);
 }
 
+// varias logicas que se tienen que poder exportar
 function validarIngreso(user, pass, setError, setErrorClass) {
   if (user === "" && pass === "") {
     setError("Debes completar todos los campos"); // seteo el mensaje

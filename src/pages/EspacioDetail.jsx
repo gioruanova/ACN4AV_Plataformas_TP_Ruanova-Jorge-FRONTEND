@@ -122,11 +122,13 @@ export default function EspacioDetail() {
       <div className="reservar-sala subContainer">
         <div className="card-salas" key={space.id}>
           {space.destacado && <span className="tag-destacado">Destacada</span>}
-          <img
-            src={space.imagen_space}
-            alt={space.name}
-            className="imagen-space"
-          />
+          <div className="imagen-space">
+            <img
+              src={space.imagen_space}
+              alt={space.name}
+              className="imagen-space"
+            />
+          </div>
           <div className="card-content">
             <h4>{space.name}</h4>
             <div className="bottom-data">

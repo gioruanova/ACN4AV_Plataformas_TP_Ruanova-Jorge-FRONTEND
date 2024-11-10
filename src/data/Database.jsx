@@ -160,19 +160,27 @@ export const rangosHorarios = [
 
 export const listadoReservas = [
   {
-    reserva_id:124242,
+    reserva_id: 124242,
     sala_id: 10001,
     sala_fecha: "2024-12-12",
     sala_hora: "08:30",
-    usaurio_id: 1000,
+    usaurio_id: 2000,
     sala_estado: true,
   },
   {
-    reserva_id:5465465,
+    reserva_id: 5465465,
     sala_id: 10003,
     sala_fecha: "2024-12-22",
     sala_hora: "08:30",
-    usaurio_id: 1000,
+    usaurio_id: 2000,
     sala_estado: false,
+  },
+  {
+    reserva_id: 5465424265,
+    sala_id: 10005,
+    sala_fecha: "2025-6-22",
+    sala_hora: "08:30",
+    usaurio_id: 2000,
+    sala_estado: true,
   },
 ];

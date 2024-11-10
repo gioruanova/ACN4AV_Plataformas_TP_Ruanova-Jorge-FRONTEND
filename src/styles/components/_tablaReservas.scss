@@ -1,0 +1,81 @@
+.misReservas {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+
+    @media screen and (max-width: 600px) {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+      transition: 0.3s;
+      text-align: center;
+      transition: $defaultTransition;
+    }
+
+    th {
+      background-color: $secondaryColor;
+      font-weight: bold;
+      color: $white;
+    }
+
+    td {
+      text-align: center;
+      transition: $defaultTransition;
+      @include glassEffect();
+      border-radius: 0;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+      transition: $defaultTransition;
+      width: 150px;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+      transition: $defaultTransition;
+      width: 150px;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      transition: $defaultTransition;
+      width: 200px;
+    }
+
+    tr:nth-child(even) {
+      transition: $defaultTransition;
+      background-color: #f9f9f9;
+    }
+
+    tr:hover {
+      transition: $defaultTransition;
+      background-color: #f1f1f1;
+    }
+
+    .active {
+      color: green;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .cancelled {
+      color: red;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+}

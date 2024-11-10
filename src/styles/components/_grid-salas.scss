@@ -10,7 +10,6 @@
   flex-basis: 250px;
   max-width: 300px;
   min-width: 250px;
-  border: 1px solid #ccc;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: $border-radius-contaienrs;
@@ -22,12 +21,9 @@
   cursor: default;
 
   &:hover {
-    transform: scale(1.05);
-    h4,
-    img,
-    span {
-      opacity: 0.6;
-      transition: $defaultTransition;
+    box-shadow: 0 4px 14px 6px rgb(0 0 0 / 51%);
+    img {
+      transform: scale(1.2);
     }
   }
 
@@ -60,7 +56,16 @@
 
 .card-salas .imagen-space {
   width: 100%;
+  overflow: hidden;
   transition: $defaultTransition;
+
+  img {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: $defaultTransition;
+  }
 }
 
 .card-salas .card-content {
@@ -69,6 +74,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @include glassEffect();
 
   &.noBtn {
     min-height: 110px;
