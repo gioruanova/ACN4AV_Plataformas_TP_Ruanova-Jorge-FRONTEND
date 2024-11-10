@@ -1,0 +1,42 @@
+.reservar-sala {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  column-gap: 4rem;
+  margin-top: 2rem;
+
+  .formulario-reserva {
+    display: flex;
+    flex-direction: column;
+
+    .formulario {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      @include glassEffect();
+      padding: 20px;
+
+      .inputWrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+        label {
+          min-width: 250px;
+          text-align: left;
+        }
+        input,
+        select {
+          margin: 0;
+          min-width: 230px;
+          margin-left: 20px;
+        }
+      }
+      .btnBase {
+        align-self: center;
+      }
+    }
+  }
+}

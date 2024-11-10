@@ -9,6 +9,8 @@ import Espacios from "../pages/Espacios";
 import Contacto from "../pages/Contacto";
 
 import Dashboard from "../pages/Dashboard";
+
+import EspacioDetail from "../pages/EspacioDetail";
 import Error404 from "../pages/Error";
 
 export default function Rutas() {
@@ -27,6 +29,16 @@ export default function Rutas() {
           </ProtectedRoute>
         }
       />
+
+      <Route
+        path="/espacio/:id"
+        element={
+          <ProtectedRoute>
+            <EspacioDetail />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="*" element={<Error404 />} />
     </Routes>
   );

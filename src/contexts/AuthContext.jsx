@@ -4,7 +4,7 @@ const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export function AuthProvider({ children }) {
-  const [is_logueado, setIsLogueado] = useState(false);
+  const [is_logueado, setIsLogueado] = useState(true);
 
   const login = () => {
     setIsLogueado(true);
