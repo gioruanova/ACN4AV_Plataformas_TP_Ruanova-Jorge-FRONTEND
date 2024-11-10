@@ -4,7 +4,7 @@ import { rangosHorarios, listadoSalas } from "../data/Database";
 import useAnimationContent from "../hooks/useAnimationContent";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../hooks/customToast";
-import validarDisponibilidad from "../helpers/Validadores";
+import ValidarDisponibilidadEspacio from "../helpers/ValidarDisponibilidadEspacio";
 import Spinner from "../components/Spinner";
 import BotonVolver from "../components/BotonVolver";
 
@@ -27,7 +27,7 @@ function handleReserva(
 
   setTimeout(() => {
     // Lógica de reserva
-    if (validarDisponibilidad(salaElegida, fecha, hora)) {
+    if (ValidarDisponibilidadEspacio(salaElegida, fecha, hora)) {
       setMessage("El espacio no está disponible en esa fecha y hora.");
       setToastType("error");
       setToastStyle({

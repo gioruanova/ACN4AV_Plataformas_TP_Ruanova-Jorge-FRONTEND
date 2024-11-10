@@ -17,7 +17,7 @@ export const listadoUsuarios = [
     nombre: "Jorgito test",
     apellido: "Ruanova",
     email: "jorge.ruanova@gmail.com",
-    esMedico: false,
+    isAdmin: true,
   },
   {
     id: 2000,
@@ -26,7 +26,7 @@ export const listadoUsuarios = [
     nombre: "Pepe",
     apellido: "Gonzalez",
     email: "pepe.gonzalez@gmail.com",
-    esMedico: false,
+    isAdmin: false,
   },
   {
     id: 3000,
@@ -35,7 +35,7 @@ export const listadoUsuarios = [
     nombre: "Pedro",
     apellido: "Perez",
     email: "pedro.perez@gmail.com",
-    esMedico: true,
+    isAdmin: false,
     especialidad: "Cardiologo",
   },
   {
@@ -45,7 +45,7 @@ export const listadoUsuarios = [
     nombre: "Luis",
     apellido: "Pepito",
     email: "luis.pepito@gmail.com",
-    esMedico: true,
+    isAdmin: false,
     especialidad: "Traumatologia",
   },
 ];

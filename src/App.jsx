@@ -35,7 +35,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter >
         <MainLayout>
           <Header />
           <ClassProvider>

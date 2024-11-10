@@ -1,10 +1,14 @@
 .error-message {
   display: flex;
   justify-content: center;
-  margin: 0px auto 0px;
   max-width: 320px;
   height: 0px;
   transition: $defaultTransition;
+  overflow: hidden;
+  position: absolute;
+  top: 85%;
+  margin: 20px auto 10px;
+  
   &.notShow {
     opacity: 0;
     transition: $defaultTransition;
@@ -13,7 +17,7 @@
   &.show {
     opacity: 1;
     transition: $defaultTransition;
-    margin: 20px auto 10px;
+    
     height: 30px;
   }
 

@@ -8,7 +8,7 @@ function handleLogout(e, logout, navigate) {
 }
 
 export default function BotoneraDashboard() {
-  const { is_logueado, isAdmin, logout } = useAuth();
+  const { is_logueado, isAdmin, logout, userId } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -18,6 +18,8 @@ export default function BotoneraDashboard() {
           {isAdmin ? (
             <>
               <h1>Bienvenido Admin</h1>
+              <p>Bienvenido, usuario ID: {userId} ({isAdmin ? "Admin" : "Usuario estándar"})</p>
+
 
               <div className="btn-container">
                 <Link to="/gestionusuarios" className="btnBase">
@@ -44,6 +46,7 @@ export default function BotoneraDashboard() {
           ) : (
             <>
               <h1>Bienvenido Usuario</h1>
+              <p>Bienvenido, usuario ID: {userId} ({isAdmin ? "Admin" : "Usuario estándar"})</p>
 
               <div className="btn-container btn-user">
                 <Link to="/misdatos" className="btnBase">

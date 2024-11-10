@@ -3,20 +3,70 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAnimationContent from "../hooks/useAnimationContent";
 import BotonVolver from "../components/BotonVolver";
+import { LoginUsuario } from "../helpers/LoginUsuario";
+import { useState } from "react";
 
+function errorEffect(setClass) {
+  setTimeout(() => {
+    setClass("notShow");
+  }, 2000);
+}
 
+function validarIngreso(user, pass, setError, setErrorClass) {
+  if (user === "" && pass === "") {
+    setError("Debes completar todos los campos"); // seteo el mensaje
+    setErrorClass("show"); // agrego la clase
+    errorEffect(setErrorClass); // quito la clase
+    return false;
+  } else if (user === "") {
+    setError("El usuario es obligatorio"); // seteo el mensaje
+    setErrorClass("show"); // agrego la clase
+    errorEffect(setErrorClass); // quito la clase
+    return false;
+  } else if (pass === "") {
+    setError("Debe ingresar una contraseña"); // seteo el mensaje
+    setErrorClass("show"); // agrego la clase
+    errorEffect(setErrorClass); // quito la clase
+    return false;
+  } else {
+    return true;
+  }
+}
 
 export default function Login() {
-  const { login } = useAuth();
   useAnimationContent();
 
-
+  const { login } = useAuth();
   const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [errorClass, setErrorClass] = useState("");
 
   const handlerLogin = (e) => {
     e.preventDefault();
-    login();
-    navigate("/dashboard");
+
+    if (validarIngreso(username, password, setError, setErrorClass)) {
+      const resultado = LoginUsuario(username, password);
+
+      if (resultado.success) {
+        if (resultado.isAdmin) {
+          console.log(
+            `ADMIN:  Ingreso correcto. Bienvenido ${resultado.user.nombre} `
+          );
+          login(true, resultado.user.id);
+          navigate("/dashboard");
+        } else {
+          login(false, resultado.user.id);
+          navigate("/dashboard");
+        }
+      } else {
+        console.log("Ingreso incorrecto. Verifique sus credenciales.");
+      }
+    }
+
+    // login();
   };
   return (
     <div className="main-login subContainer" id="login-content">
@@ -31,7 +81,9 @@ export default function Login() {
                 id="username"
                 name="username"
                 type="text"
-                placeholder="(dni afiliado/profesional)"
+                value={username}
+                placeholder="(dni o email)"
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
 
@@ -42,7 +94,13 @@ export default function Login() {
                 name="password"
                 type="password"
                 placeholder="******"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
+
+              <span className={`error-message ${errorClass}`}>
+                <span>{error}</span>
+              </span>
             </div>
             <div className="btn-container">
               <Link to="/contacto" className="fgt-pass">
@@ -64,8 +122,7 @@ export default function Login() {
           </form>
         </div>
       </div>
-      <BotonVolver ruta={""} />
-
+      <BotonVolver ruta={"dashboard"} />
     </div>
   );
 }
