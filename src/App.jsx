@@ -13,11 +13,13 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+      <div className="main-layout">
         <Header />
         <Content>
         <Rutas />
         </Content>
         <Footer />
+        </div>
       </BrowserRouter>
     </AuthProvider>
   );

@@ -1,15 +1,13 @@
-.main-login {
+.form-contacto {
   display: flex;
   align-items: center;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 
-  .login-container {
+  .contacto-container {
     left: 0;
     height: 100%;
-    max-width: 500px;
-    width: 75%;
     padding: 20px 70px;
     box-sizing: border-box;
     display: flex;
@@ -40,8 +38,15 @@
   .wrap-content {
     display: flex;
     flex-direction: column;
+    textarea{
+      width: 100%;
+      min-height: 200px;
+      margin-bottom: 0;
+      padding: 5px 10px;
 
-    .login-user {
+    }
+
+    .datos-contacto {
       display: flex;
       flex-direction: column;
       max-width: 390px;
@@ -57,53 +62,13 @@
       margin-top: 20px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       flex-wrap: wrap;
 
       @media screen and (max-width: 800px) {
         flex-direction: column-reverse;
         margin-top: 0;
-
-        .fgt-pass {
-          margin: 10px 0 20px;
-        }
-      }
-
-      .fgt-pass {
-        font-size: 14px;
-        color: $secondaryColorDark;
       }
     }
-  }
-}
-
-.mobile-app {
-  display: none;
-
-  @media screen and (max-width: 800px) {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  img {
-    max-width: 185px;
-    height: 55px;
-    object-fit: contain;
-    width: 100%;
-    margin: 10px;
-  }
-
-  h2 {
-    font-size: 15px;
-    margin: 0;
   }
 }

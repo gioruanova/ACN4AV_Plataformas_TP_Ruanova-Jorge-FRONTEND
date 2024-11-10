@@ -1,20 +1,22 @@
-.glass-container {
-  &.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: center;
-    a {
-      text-decoration: none;
-      color: $secondaryColorDark;
-      font-weight: 700;
-      transition: $defaultTransition;
+.footer {
+  @include standardSize();
+  @include glassEffect();
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  @media screen and (max-width: 850px) {
+    flex-direction: column;
+  }
+  a {
+    text-decoration: none;
+    color: $secondaryColorDark;
+    font-weight: 700;
+    transition: $defaultTransition;
 
-      &:hover {
-        transition: $defaultTransition;
-        font-size: 17px;
-      }
+    &:hover {
+      transition: $defaultTransition;
+      font-size: 17px;
     }
   }
 }

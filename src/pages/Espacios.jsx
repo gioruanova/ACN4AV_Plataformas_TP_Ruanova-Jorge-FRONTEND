@@ -1,14 +1,17 @@
+import GridEspacios from "../components/GridEspacios";
+
 export default function Espacios() {
+  // const { is_logueado, logout } = useAuth();
+
   return (
-    <div>
-      <h1>Espacios</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam officiis, velit, laboriosam fugiat debitis numquam tempore nisi soluta ratione pariatur doloremque deleniti a consequuntur maxime alias inventore, minima asperiores!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam officiis, velit, laboriosam fugiat debitis numquam tempore nisi soluta ratione pariatur doloremque deleniti a consequuntur maxime alias inventore, minima asperiores!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam officiis, velit, laboriosam fugiat debitis numquam tempore nisi soluta ratione pariatur doloremque deleniti a consequuntur maxime alias inventore, minima asperiores!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam officiis, velit, laboriosam fugiat debitis numquam tempore nisi soluta ratione pariatur doloremque deleniti a consequuntur maxime alias inventore, minima asperiores!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam officiis, velit, laboriosam fugiat debitis numquam tempore nisi soluta ratione pariatur doloremque deleniti a consequuntur maxime alias inventore, minima asperiores!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam officiis, velit, laboriosam fugiat debitis numquam tempore nisi soluta ratione pariatur doloremque deleniti a consequuntur maxime alias inventore, minima asperiores!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta nam officiis, velit, laboriosam fugiat debitis numquam tempore nisi soluta ratione pariatur doloremque deleniti a consequuntur maxime alias inventore, minima asperiores!</p>
-    </div>
+<>
+
+<div className="grid-salas">
+<GridEspacios />
+</div>
+
+
+
+</>
   );
 }

@@ -1,0 +1,86 @@
+.grid-salas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.card-salas {
+  flex-basis: 250px;
+  max-width: 300px;
+  min-width: 250px;
+  border: 1px solid #ccc;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: calc($boder-radius-images + 4px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: $defaultTransition;
+  @media screen and (max-width: 700px) {
+    transition: $defaultTransition;
+    max-width: 400px;
+    flex-basis: 300px;
+  }
+
+  .tag-destacado {
+    content: "Destacado";
+    background-color: rgb(231, 82, 82);
+    color: $white;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 4px 10px;
+    line-height: normal;
+    letter-spacing: 1px;
+    font-family: $mainFont2;
+    border-radius: 8px;
+    @include shadowEffect();
+    transition: $defaultTransition;
+  }
+  &:hover {
+    opacity: 0.6;
+    transition: $defaultTransition;
+  }
+}
+
+.card-salas .imagen-space {
+  width: 100%;
+  // max-width: 24%;
+}
+
+.card-salas .card-content {
+  padding: 10px 20px 20px;
+  min-height: 145px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &.noBtn{
+    min-height: 110px;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin: 0;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.card-salas .card-content .bottom-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  .btnBase {
+    margin-top: 20px;
+  }
+}

@@ -21,7 +21,7 @@ export default function Header() {
 
   return (
     <div
-      className={"glass-container navbar " + (isOpen ? "openMenu" : "")}
+      className={"navbar " + (isOpen ? "openMenu" : "")}
       onClick={toggleMenuOut}
     >
       <div id="navegacion-conent">

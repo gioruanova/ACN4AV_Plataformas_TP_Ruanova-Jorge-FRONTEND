@@ -16,7 +16,7 @@ export default function Login() {
     <div className="main-login" id="login-content">
       <div className="login-container">
         <div className="wrap-content">
-          <span>Ingrese sus credenciales para ingresar al portal</span>
+          <h1>Ingrese sus credenciales para ingresar al portal</h1>
 
           <form className="login-user">
             <div className="inputWrap inputUser">

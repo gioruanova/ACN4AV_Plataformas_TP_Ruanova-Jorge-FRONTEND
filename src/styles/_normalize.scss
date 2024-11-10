@@ -1,0 +1,21 @@
+
+body {
+  min-width: 320px;
+  background-color: $baseColor;
+  overflow: hidden;
+  overflow-y: auto;
+  background-image: url("/images/clouds1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: $baseColor;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+}
+

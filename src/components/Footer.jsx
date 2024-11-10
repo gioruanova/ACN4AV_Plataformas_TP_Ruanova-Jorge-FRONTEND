@@ -1,15 +1,14 @@
 export default function Footer() {
   return (
-    <div className="glass-container footer">
-      <span>Todos los derechos reservados. </span>
+    <div className="footer">
+      <span>Todos los derechos reservados{".  "} </span>
       <span>
-         Desarrollado por {" "}
+        Desarrollado por{"  "}
         <a href="https://www.giorgioruanova.com/" target="_blank">
-          Gio Ruanova
+          Gio Dev
         </a>
-        
+        .
       </span>
-      
     </div>
   );
 }
