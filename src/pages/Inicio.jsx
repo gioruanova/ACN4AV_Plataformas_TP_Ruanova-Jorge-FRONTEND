@@ -4,6 +4,8 @@ import SwiperDestacados from "../components/SwiperDestacados";
 import { listadoSalas } from "../data/Database";
 import useAnimationContent from "../hooks/useAnimationContent";
 
+import Logo from "../assets/misc/logo.png";
+
 export default function Inicio() {
   useAnimationContent();
 
@@ -47,6 +49,32 @@ export default function Inicio() {
           listadoSalas={listadoSalas}
           classNameSwiper={"swiper-destacados"}
         />
+      </div>
+
+      <div className="info-sitio">
+        <img
+          src={Logo}
+          alt="Central de reservas"
+          className="info-sitio-imagen"
+        />
+        <div className="info-sitio-text">
+          <h2>Misión</h2>
+          <p>
+            Brindamos soluciones de reservas rápidas y confiables, ofreciendo la
+            mejor experiencia a nuestros clientes mediante tecnología
+            innovadora.
+          </p>
+
+          <h2>Visión</h2>
+          <p>
+            Ser líderes en el mercado de reservas, ampliando nuestro alcance y
+            mejorando continuamente nuestros servicios para satisfacer las
+            necesidades de los usuarios.
+          </p>
+
+          <h2>Valores</h2>
+          <p>Compromiso, confianza, innovación y excelencia en el servicio.</p>
+        </div>
       </div>
     </div>
   );

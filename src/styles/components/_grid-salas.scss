@@ -13,7 +13,7 @@
   border: 1px solid #ccc;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: calc($boder-radius-images + 4px);
+  border-radius: $border-radius-contaienrs;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,7 @@
     line-height: normal;
     letter-spacing: 1px;
     font-family: $mainFont2;
-    border-radius: 8px;
+    border-radius: $border-radius-standard;
     @include shadowEffect();
     transition: $defaultTransition;
     z-index: 9;

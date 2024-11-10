@@ -15,7 +15,7 @@ $btnActive: $baseColor;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: $border-radius-standard;
   background-color: color.adjust($btnActive, $lightness: -10%);
   color: $white;
   cursor: pointer;
@@ -23,7 +23,7 @@ $btnActive: $baseColor;
   min-width: 175px;
 
   &:hover {
-    border-radius: 4px;
+    border-radius: $border-radius-standard;
     background-color: color.adjust($btnActive, $lightness: -20%);
     transition: $defaultTransition;
     text-decoration: none;

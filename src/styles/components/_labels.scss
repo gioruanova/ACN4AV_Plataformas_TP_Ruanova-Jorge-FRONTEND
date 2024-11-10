@@ -15,15 +15,13 @@
     transition: $defaultTransition;
     margin: 20px auto 10px;
     height: 30px;
-
   }
 
   span {
     background-color: rgba(255, 0, 0, 0.5);
     color: $white;
     padding: 5px 20px;
-    border-radius: 20px;
+    border-radius: $border-radius-standard;
     font-size: 14px;
   }
 }
-

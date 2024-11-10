@@ -10,16 +10,18 @@
   }
 
   input,
-  textarea,select {
+  textarea,
+  select {
     background: rgba(255, 255, 255, 0.726);
     border: none;
     height: 40px;
     padding: 0 10px;
-    border-radius: 2px;
+    border-radius: $border-radius-standard;
     box-shadow: 2px 2px 7px 1px #ddddddb0;
     box-sizing: border-box;
     resize: none;
     margin: 5px 0 20px;
+    font-family: $mainFont;
   }
 
   label {

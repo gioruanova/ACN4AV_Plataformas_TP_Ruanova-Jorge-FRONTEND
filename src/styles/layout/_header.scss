@@ -49,7 +49,7 @@
       div {
         height: 4px;
         width: 30px;
-        border-radius: 10px;
+        border-radius: $border-radius-standard;
         background-color: $secondaryColorDark;
         margin: 3px 0;
         transition: $defaultTransition;
@@ -134,7 +134,7 @@
       color: $secondaryColorDark;
       padding: 2px 15px;
       margin: 0 3px;
-      border-radius: 5px;
+      border-radius: $border-radius-standard;
       transition: $defaultTransition;
       box-sizing: border-box;
       &.currentStage {

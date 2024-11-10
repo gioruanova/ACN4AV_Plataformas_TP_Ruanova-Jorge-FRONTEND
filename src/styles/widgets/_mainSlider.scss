@@ -13,7 +13,7 @@
 
   .slider-principal {
     @include shadowEffect();
-    border-radius: $boder-radius-images;
+    border-radius: $border-radius-standard;
 
     transition: $defaultTransition;
     &:hover {
@@ -30,7 +30,7 @@
       }
     }
     .swiper-wrapper {
-      border-radius: $boder-radius-images;
+      border-radius: $border-radius-standard;
       overflow: hidden;
       cursor: pointer;
     }

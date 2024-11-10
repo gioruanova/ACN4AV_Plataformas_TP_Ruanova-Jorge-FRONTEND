@@ -5,6 +5,7 @@ const AuthContext = createContext();
 // eslint-disable-next-line react/prop-types
 export function AuthProvider({ children }) {
   const [is_logueado, setIsLogueado] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const login = () => {
     setIsLogueado(true);
@@ -14,8 +15,14 @@ export function AuthProvider({ children }) {
     setIsLogueado(false);
   };
 
+  const setAdminStatus = (status) => {
+    setIsAdmin(status);
+  };
+
   return (
-    <AuthContext.Provider value={{ is_logueado, login, logout }}>
+    <AuthContext.Provider
+      value={{ is_logueado, isAdmin, login, logout, setAdminStatus }}
+    >
       {children}
     </AuthContext.Provider>
   );

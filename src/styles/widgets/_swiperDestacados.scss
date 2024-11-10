@@ -3,34 +3,34 @@
   width: 100%;
   max-width: 900px;
   text-align: center;
-  border: $boder-radius-images;
+  border: $border-radius-standard;
   margin-bottom: 2rem;
 
   .swiper-destacados {
     overflow: hidden;
     max-width: 100%;
     width: 100%;
-    border-radius: $boder-radius-images;
+    border-radius: $border-radius-standard;
 
     .swiper {
       width: 100%;
       height: 100%;
-      border-radius: $boder-radius-images;
+      border-radius: $border-radius-standard;
     }
 
     .swiper-wrapper {
-      border-radius: $boder-radius-images;
+      border-radius: $border-radius-standard;
     }
 
     .swiper-slide {
       text-align: center;
       font-size: 18px;
       cursor: pointer;
-      border-radius: $boder-radius-images;
+      border-radius: $border-radius-standard;
       overflow: hidden;
       transition: $defaultTransition;
       position: relative;
-      
+
       &::after {
         content: "Destacado";
         background-color: rgb(231, 82, 82);
@@ -45,7 +45,7 @@
         line-height: normal;
         letter-spacing: 1px;
         font-family: $mainFont2;
-        border-radius: 8px;
+        border-radius: $border-radius-standard;
         @include shadowEffect();
         @media screen and (max-width: 500px) {
           font-size: 10px;
@@ -65,7 +65,7 @@
       width: 100%;
       height: 250px;
       object-fit: cover;
-      border-radius: $boder-radius-images;
+      border-radius: $border-radius-standard;
       @include shadowEffect();
 
       @media screen and (max-width: 700px) {

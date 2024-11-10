@@ -70,7 +70,7 @@ function handleReserva(
       });
 
       setTimeout(() => {
-        navigate("/espacios");
+        navigate("/dashboard");
       }, 3200);
       setIsLoading(false);
     }

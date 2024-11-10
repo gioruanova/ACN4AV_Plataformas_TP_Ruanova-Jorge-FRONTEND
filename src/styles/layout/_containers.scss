@@ -44,6 +44,7 @@
 
   .subContainer {
     animation: fadeIn 1600ms ease-in-out;
+    margin-top: 1rem;
   }
 
   @media screen and (max-width: 850px) {
@@ -90,8 +91,7 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    border-radius: 5px;
-
+    border-radius: $border-radius-standard;
     @include shadowEffect();
   }
 
@@ -197,6 +197,49 @@
     }
     .separator {
       display: none;
+    }
+  }
+}
+
+//-----------------------------
+// Cierre info index
+//-----------------------------
+
+.info-sitio {
+  display: flex;
+  margin: 2rem 0;
+  display: flex;
+  margin: 2rem 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
+
+  .info-sitio-imagen {
+    max-width: 150px;
+    object-fit: contain;
+    margin-right: 3rem;
+
+    @media screen and (max-width: 800px) {
+      margin-right: 0;
+    }
+  }
+
+  .info-sitio-text {
+    max-width: 500px;
+    h2 {
+      margin-bottom: 5px;
+    }
+    p {
+      margin: 0 0 10px;
+    }
+
+    @media screen and (max-width: 800px) {
+      text-align: center;
+      margin-top: 2rem;
     }
   }
 }
