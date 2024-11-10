@@ -19,6 +19,18 @@
   flex-direction: column;
   position: relative;
   transition: $defaultTransition;
+  cursor: default;
+
+  &:hover {
+    transform: scale(1.05);
+    h4,
+    img,
+    span {
+      opacity: 0.6;
+      transition: $defaultTransition;
+    }
+  }
+
   @media screen and (max-width: 700px) {
     transition: $defaultTransition;
     max-width: 400px;
@@ -42,15 +54,13 @@
     border-radius: 8px;
     @include shadowEffect();
     transition: $defaultTransition;
-  }
-  &:hover {
-    opacity: 0.6;
-    transition: $defaultTransition;
+    z-index: 9;
   }
 }
 
 .card-salas .imagen-space {
   width: 100%;
+  transition: $defaultTransition;
 }
 
 .card-salas .card-content {
@@ -60,7 +70,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &.noBtn{
+  &.noBtn {
     min-height: 110px;
   }
 
@@ -71,6 +81,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: $defaultTransition;
   }
 }
 

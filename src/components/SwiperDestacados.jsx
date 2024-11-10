@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-export default function SwiperDestacados({ spaceList, classNameSwiper }) {
+export default function SwiperDestacados({ listadoSalas, classNameSwiper }) {
   return (
     <Swiper
       modules={[Pagination, Autoplay]}
@@ -18,7 +18,7 @@ export default function SwiperDestacados({ spaceList, classNameSwiper }) {
         disableOnInteraction: false,
       }}
       speed={1000}
-      loopedSlides={spaceList.length > 3 ? 3 : spaceList.length}
+      loopedSlides={listadoSalas.length > 3 ? 3 : listadoSalas.length}
       breakpoints={{
         640: {
           slidesPerView: 3,
@@ -36,7 +36,7 @@ export default function SwiperDestacados({ spaceList, classNameSwiper }) {
       autoHeight={true}
       className={classNameSwiper}
     >
-      {spaceList.map(
+      {listadoSalas.map(
         (image, index) =>
           image.destacado && (
             <SwiperSlide key={index}>

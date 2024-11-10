@@ -1,17 +1,64 @@
 .reservar-sala {
   width: 100%;
-  display: flex;
-  align-items: flex-start;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: min-content min-content;
+  grid-template-rows: auto min-content;
   justify-content: center;
-  column-gap: 4rem;
-  margin-top: 2rem;
+  align-items: end;
+  column-gap: 2rem;
+  grid-template-areas:
+    "card title"
+    "card reserva";
+
+  @media screen and (max-width: 840px) {
+    justify-items: center;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "card"
+      "reserva";
+  }
+
+  h1 {
+    grid-area: title;
+
+    @media screen and (max-width: 840px) {
+      text-align: center;
+    }
+  }
+
+  .card-salas {
+    grid-area: card;
+    flex-basis: 100%;
+
+    @media screen and (max-width: 840px) {
+      max-width: 400px;
+      width: 100%;
+      margin: 2rem 0;
+    }
+  }
+
+  .card-content {
+    min-height: auto;
+    flex-basis: 100%;
+  }
 
   .formulario-reserva {
+    grid-area: reserva;
     display: flex;
     flex-direction: column;
+    height: 100%;
+
+    @media screen and (max-width: 840px) {
+      margin-top: 2rem;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
 
     .formulario {
-      margin-top: 2rem;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -23,8 +70,11 @@
         flex-direction: row;
         align-items: center;
         margin-bottom: 20px;
+        width: 100%;
+
         label {
-          min-width: 250px;
+          max-width: 250px;
+          width: 100%;
           text-align: left;
         }
         input,
@@ -32,10 +82,38 @@
           margin: 0;
           min-width: 230px;
           margin-left: 20px;
+          cursor: pointer;
+        }
+
+        @media screen and (max-width: 840px) {
+          flex-direction: column;
+
+          label {
+            text-align: center;
+          }
+
+          input,
+          select {
+            margin-left: 0;
+          }
         }
       }
-      .btnBase {
+
+      .btn-container {
+        display: flex;
         align-self: center;
+        align-items: flex-end;
+        height: 100%;
+
+        @media screen and (max-width: 840px) {
+          flex-direction: column;
+          width: 100%;
+
+          .btnBase {
+            width: 100%;
+            max-width: 100%;
+          }
+        }
       }
     }
   }

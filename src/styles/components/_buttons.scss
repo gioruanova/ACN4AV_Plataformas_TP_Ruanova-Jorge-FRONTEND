@@ -5,6 +5,8 @@ $btnFontFamily: $headingFontFamily;
 $btnActive: $baseColor;
 
 .btnBase {
+  display: flex;
+  justify-content: center;
   border: none;
   box-sizing: border-box;
   padding: 10px 30px;

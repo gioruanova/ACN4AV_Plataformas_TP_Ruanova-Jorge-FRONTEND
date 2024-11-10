@@ -1,0 +1,39 @@
+.spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffffd2;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    width: 60px;
+    animation: spinnerRotate 2s linear infinite;
+  }
+
+  .spinner-text {
+    color: $secondaryColorDark;
+    font-weight: 600;
+    font-family: $mainFont2;
+    margin-top: 10px;
+  }
+}
+
+@keyframes spinnerRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

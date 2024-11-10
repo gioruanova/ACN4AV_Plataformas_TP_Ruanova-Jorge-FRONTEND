@@ -1,7 +1,7 @@
 import MainImage from "../assets/main-image.png";
 import MainSwiper from "../components/MainSwiper";
 import SwiperDestacados from "../components/SwiperDestacados";
-import { spacesList } from "../data/Database";
+import { listadoSalas } from "../data/Database";
 import useAnimationContent from "../hooks/useAnimationContent";
 
 export default function Inicio() {
@@ -34,7 +34,7 @@ export default function Inicio() {
         </div>
         <div id="swiperContainer">
           <MainSwiper
-            spaceList={spacesList}
+            listadoSalas={listadoSalas}
             classNameSwiper={"slider-principal"}
             slidesNumber={1}
           />
@@ -44,7 +44,7 @@ export default function Inicio() {
       <div id="espacios-destacados">
         <h2>Nuestros espacios destacados</h2>
         <SwiperDestacados
-          spaceList={spacesList}
+          listadoSalas={listadoSalas}
           classNameSwiper={"swiper-destacados"}
         />
       </div>

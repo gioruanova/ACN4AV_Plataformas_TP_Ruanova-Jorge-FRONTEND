@@ -9,7 +9,7 @@ import space_8 from "../assets/espacios/space_8.jpg";
 import space_9 from "../assets/espacios/space_9.jpg";
 import space_10 from "../assets/espacios/space_10.jpg";
 
-export const usersList = [
+export const listadoUsuarios = [
   {
     id: 1000,
     dni: "111",
@@ -50,7 +50,7 @@ export const usersList = [
   },
 ];
 
-export const spacesList = [
+export const listadoSalas = [
   {
     id: 10001,
     name: "Sala reuniones chica",
@@ -130,5 +130,47 @@ export const spacesList = [
     apta_proyector: false,
     imagen_space: space_10,
     destacado: true,
+  },
+];
+
+export const rangosHorarios = [
+  "08:00",
+  "08:30",
+  "09:00",
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "12:00",
+  "12:30",
+  "13:00",
+  "13:30",
+  "14:00",
+  "14:30",
+  "15:00",
+  "15:30",
+  "16:00",
+  "16:30",
+  "17:00",
+  "17:30",
+  "18:00",
+  "18:30",
+];
+
+export const listadoReservas = [
+  {
+    sala_id: 10001,
+    sala_fecha: "2024-12-12",
+    sala_hora: "08:30",
+    usaurio_id: 1000,
+    sala_estado: true,
+  },
+  {
+    sala_id: 10003,
+    sala_fecha: "2024-12-22",
+    sala_hora: "08:30",
+    usaurio_id: 1000,
+    sala_estado: false,
   },
 ];

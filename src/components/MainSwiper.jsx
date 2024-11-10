@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-const MainSwiper = ({ spaceList, classNameSwiper, slidesNumber }) => {
+const MainSwiper = ({ listadoSalas, classNameSwiper, slidesNumber }) => {
   return (
     <Swiper
       modules={[Autoplay, EffectFade, Navigation]}
@@ -22,7 +22,7 @@ const MainSwiper = ({ spaceList, classNameSwiper, slidesNumber }) => {
       effect="fade"
       loop={true}
     >
-      {spaceList.map((image, index) => (
+      {listadoSalas.map((image, index) => (
         <SwiperSlide key={index}>
           <img
             src={image.imagen_space}
