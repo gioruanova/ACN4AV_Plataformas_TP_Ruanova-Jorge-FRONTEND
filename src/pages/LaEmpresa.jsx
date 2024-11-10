@@ -1,6 +1,11 @@
+import useAnimationContent from "../hooks/useAnimationContent";
+
+
 export default function LaEmpresa() {
+  useAnimationContent();
+
   return (
-    <div>
+    <div className="subContainer">
       <h1>Nuestra Historia</h1>
       <p>
         Fundada en 2020, nuestra empresa nació con el objetivo de ofrecer

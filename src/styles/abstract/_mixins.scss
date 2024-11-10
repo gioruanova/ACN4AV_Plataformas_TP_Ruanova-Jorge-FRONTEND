@@ -36,9 +36,6 @@
     z-index: -1;
     animation: moveClouds 60s linear infinite;
 
-    @media screen and (max-width: 800px) {
-      display: none;
-    }
   }
 
   &::after {
@@ -54,31 +51,10 @@
     left: 0;
     z-index: -1;
     animation: moveClouds2 40s linear infinite;
-    @media screen and (max-width: 800px) {
-      display: none;
-    }
   }
 }
 
-@keyframes moveClouds {
-  0% {
-    transform: translateX(0);
-  }
 
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes moveClouds2 {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
 
 @mixin cloudBg() {
   &::before {

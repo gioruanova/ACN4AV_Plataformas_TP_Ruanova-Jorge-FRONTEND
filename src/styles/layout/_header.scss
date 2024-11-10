@@ -13,7 +13,6 @@
     &.openMenu {
       align-items: flex-start;
       transition: $defaultTransition;
-
     }
   }
 }
@@ -83,17 +82,17 @@
   .header-logo {
     width: 60px;
     height: 60px;
-    background-image: url("/images/logo.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
     transition: $defaultTransition;
+    img {
+      width: 60px;
+      height: 60px;
+    }
     &.currentStage {
       cursor: default;
     }
 
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.1);
       transition: $defaultTransition;
       filter: drop-shadow(0 0 5px $baseColor);
       margin-right: 5px;

@@ -1,9 +1,13 @@
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import useAnimationContent from "../hooks/useAnimationContent";
+
 
 export default function Login() {
   const { login } = useAuth();
+  useAnimationContent();
+
 
   const navigate = useNavigate();
 
@@ -13,7 +17,7 @@ export default function Login() {
     navigate("/dashboard");
   };
   return (
-    <div className="main-login" id="login-content">
+    <div className="main-login subContainer" id="login-content">
       <div className="login-container">
         <div className="wrap-content">
           <h1>Ingrese sus credenciales para ingresar al portal</h1>

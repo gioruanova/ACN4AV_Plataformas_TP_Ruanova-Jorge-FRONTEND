@@ -2,10 +2,13 @@ import MainImage from "../assets/main-image.png";
 import MainSwiper from "../components/MainSwiper";
 import SwiperDestacados from "../components/SwiperDestacados";
 import { spacesList } from "../data/Database";
+import useAnimationContent from "../hooks/useAnimationContent";
 
 export default function Inicio() {
+  useAnimationContent();
+
   return (
-    <div className="main-content">
+    <div className="main-content subContainer">
       <div className="first-content">
         <h1>Bienvenido a Central de Reserva de Espacios</h1>
         <img src={MainImage} alt="" className="main-image" />
@@ -41,10 +44,9 @@ export default function Inicio() {
       <div id="espacios-destacados">
         <h2>Nuestros espacios destacados</h2>
         <SwiperDestacados
-            spaceList={spacesList}
-            classNameSwiper={"swiper-destacados"}
-            
-          />
+          spaceList={spacesList}
+          classNameSwiper={"swiper-destacados"}
+        />
       </div>
     </div>
   );

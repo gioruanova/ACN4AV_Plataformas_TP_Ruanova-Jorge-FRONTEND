@@ -1,23 +1,22 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useMenu, useActiveLink } from "../hooks/useMenu";
+import Logo from "../assets/misc/logo.png";
+
+// Logica para logout
+function handleLogout(e, logout, navigate) {
+  e.preventDefault();
+  logout();
+  navigate("/login");
+}
 
 export default function Header() {
   const { is_logueado, logout } = useAuth();
+  const navigate = useNavigate();
 
-  // Hooks para aplicar algunos efectos al menu
+  // Custom hooks para algunos efectos del menu
   const { isOpen, toggleMenu, toggleMenuOut } = useMenu();
   const isActiveLink = useActiveLink();
-
-  // -----------------------
-  // metodo para loguear
-  const navigate = useNavigate();
-  const handlerLogout = (e) => {
-    e.preventDefault();
-    logout();
-    navigate("/login");
-  };
-
 
   return (
     <div
@@ -26,11 +25,29 @@ export default function Header() {
     >
       <div id="navegacion-conent">
         <div className="main-header">
-
           {isActiveLink("/") ? (
-            <span className="header-logo currentStage" aria-label="Central de Reservas" alt="Central de Reservas" title="Central de Reservas"></span>
+            <img
+              src={Logo}
+              className="header-logo currentStage"
+              aria-label="Central de Reservas"
+              alt="Central de Reservas"
+              title="Central de Reservas"
+            ></img>
           ) : (
-            <Link to="/" className="header-logo" aria-label="Central de Reservas" alt="Central de Reservas" title="Central de Reservas">
+            <Link
+              to="/"
+              className="header-logo"
+              aria-label="Central de Reservas"
+              alt="Central de Reservas"
+              title="Central de Reservas"
+            >
+              <img
+                src={Logo}
+                className="header-logo"
+                aria-label="Central de Reservas"
+                alt="Central de Reservas"
+                title="Central de Reservas"
+              ></img>
             </Link>
           )}
           <div
@@ -74,20 +91,21 @@ export default function Header() {
               >
                 <span>Dashboard</span>
               </Link>
-
-              <a className="nav-link" href="" onClick={handlerLogout}>
+              <a
+                className="nav-link"
+                href=""
+                onClick={(e) => handleLogout(e, logout, navigate)}
+              >
                 <span>Salir</span>
               </a>
             </>
           ) : (
-            <>
-              <Link
-                to="/login"
-                className={isActiveLink("/login") ? "currentStage" : ""}
-              >
-                <span>Ingresar</span>
-              </Link>
-            </>
+            <Link
+              to="/login"
+              className={isActiveLink("/login") ? "currentStage" : ""}
+            >
+              <span>Ingresar</span>
+            </Link>
           )}
         </div>
       </div>

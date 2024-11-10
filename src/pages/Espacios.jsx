@@ -1,17 +1,12 @@
 import GridEspacios from "../components/GridEspacios";
+import useAnimationContent from "../hooks/useAnimationContent";
 
 export default function Espacios() {
-  // const { is_logueado, logout } = useAuth();
+  useAnimationContent();
 
   return (
-<>
-
-<div className="grid-salas">
-<GridEspacios />
-</div>
-
-
-
-</>
+    <div className="grid-salas subContainer">
+      <GridEspacios />
+    </div>
   );
 }

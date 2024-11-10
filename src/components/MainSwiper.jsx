@@ -2,12 +2,10 @@
 import { Navigation, Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-// Componente que recibe 'spaceList' como prop
 const MainSwiper = ({ spaceList, classNameSwiper, slidesNumber }) => {
   return (
     <Swiper
