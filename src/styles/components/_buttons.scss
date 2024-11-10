@@ -23,7 +23,6 @@ $btnActive: $baseColor;
   min-width: 175px;
 
   &:hover {
-    border-radius: $border-radius-standard;
     background-color: color.adjust($btnActive, $lightness: -20%);
     transition: $defaultTransition;
     text-decoration: none;

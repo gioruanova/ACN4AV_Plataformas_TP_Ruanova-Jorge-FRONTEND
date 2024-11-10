@@ -1,12 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { rangosHorarios, listadoSalas } from "../data/Database";
+import {
+  rangosHorarios,
+  listadoSalas,
+  // listadoReservas,
+} from "../data/Database";
 import useAnimationContent from "../hooks/useAnimationContent";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../hooks/customToast";
 import ValidarDisponibilidadEspacio from "../helpers/ValidarDisponibilidadEspacio";
 import Spinner from "../components/Spinner";
 import BotonVolver from "../components/BotonVolver";
+import ReservarEspacio from "../helpers/ReservarEspacio";
+import { ObtenerUsuario } from "../helpers/ObtenerUsuario";
 
 // manejar reserva
 function handleReserva(
@@ -18,7 +24,8 @@ function handleReserva(
   setToastStyle,
   setToastType,
   salaElegida,
-  setIsLoading
+  setIsLoading,
+  idUsuario
 ) {
   e.preventDefault();
 
@@ -58,7 +65,7 @@ function handleReserva(
       setIsLoading(false);
     } else {
       setMessage(
-        `La reserva para el dia ${fecha} a las ${hora} ha sido realizada con éxito.`
+        `La reserva para el dia ${fecha} a las ${hora} con el id ${salaElegida} ha sido realizada con éxito.`
       );
       setToastType("success");
       setToastStyle({
@@ -70,6 +77,8 @@ function handleReserva(
         duration: 3000,
       });
 
+      ReservarEspacio(salaElegida, fecha, hora, idUsuario);
+
       setTimeout(() => {
         navigate("/dashboard");
       }, 3200);
@@ -80,16 +89,18 @@ function handleReserva(
 
 export default function EspacioDetail() {
   useAnimationContent();
+  const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
   const [toastStyle, setToastStyle] = useState({});
   const [toastType, setToastType] = useState("success");
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
-
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
+
+  const usuarioActual = ObtenerUsuario();
+  const idUsuario = usuarioActual.id;
 
   const { id } = useParams();
   const space = listadoSalas.find((space) => space.id === parseInt(id));
@@ -175,7 +186,8 @@ export default function EspacioDetail() {
                     setToastStyle,
                     setToastType,
                     salaElegida,
-                    setIsLoading
+                    setIsLoading,
+                    idUsuario
                   )
                 }
               >

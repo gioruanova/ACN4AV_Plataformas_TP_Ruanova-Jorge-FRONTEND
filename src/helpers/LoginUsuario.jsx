@@ -1,8 +1,6 @@
 import { listadoUsuarios } from "../data/Database";
 
 export function LoginUsuario(userIngresado, passwordIngresada) {
-  console.log("Usuario ingresado:", userIngresado);
-  console.log("Contraseña ingresada:", passwordIngresada);
 
   const usuarioValido = listadoUsuarios.find(
     (usuario) =>

@@ -1,10 +1,9 @@
-import { listadoSalas } from "../data/Database";
+import { listadoReservas, listadoSalas } from "../data/Database";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../hooks/customToast";
 import { useState } from "react";
 import useAnimationContent from "../hooks/useAnimationContent";
-
 
 // Función para manejar la reserva
 function handleReservar(
@@ -33,17 +32,32 @@ function handleReservar(
 
 export default function GridEspacios() {
   useAnimationContent();
-  
+
   const { is_logueado } = useAuth();
   const navigate = useNavigate();
-  
+
   const [message, setMessage] = useState("");
   const [toastStyle, setToastStyle] = useState({});
   const [toastType, setToastType] = useState("success");
-  
 
   return (
     <>
+      <div>
+        {listadoReservas.map((reserva) => (
+          <div key={reserva.reserva_id}>
+            <div>Reserva: {reserva.reserva_id}</div>
+            <div>Id Sala: {reserva.sala_id}</div>
+            <div>Fecha: {reserva.sala_fecha}</div>
+            <div>Hora: {reserva.sala_hora}</div>
+            <div>Usuario: {reserva.usaurio_id}</div>
+            <hr />
+          </div>
+        ))}
+      </div>
+
+      {/* ----------- */}
+      {/* ----------- */}
+
       {listadoSalas.map((space) => (
         <div className="card-salas" key={space.id}>
           {space.destacado && <span className="tag-destacado">Destacada</span>}{" "}

@@ -52,9 +52,6 @@ export default function Login() {
 
       if (resultado.success) {
         if (resultado.isAdmin) {
-          console.log(
-            `ADMIN:  Ingreso correcto. Bienvenido ${resultado.user.nombre} `
-          );
           login(true, resultado.user.id);
           navigate("/dashboard");
         } else {
@@ -62,7 +59,7 @@ export default function Login() {
           navigate("/dashboard");
         }
       } else {
-        console.log("Ingreso incorrecto. Verifique sus credenciales.");
+        alert("Usuario o contraseña incorrectos");
       }
     }
 
@@ -122,7 +119,7 @@ export default function Login() {
           </form>
         </div>
       </div>
-      <BotonVolver ruta={"dashboard"} />
+      <BotonVolver ruta={""} />
     </div>
   );
 }
