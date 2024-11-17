@@ -36,7 +36,6 @@ export const listadoUsuarios = [
     apellido: "Perez",
     email: "pedro.perez@gmail.com",
     isAdmin: false,
-    especialidad: "Cardiologo",
   },
   {
     id: 4000,
@@ -46,7 +45,6 @@ export const listadoUsuarios = [
     apellido: "Pepito",
     email: "luis.pepito@gmail.com",
     isAdmin: false,
-    especialidad: "Traumatologia",
   },
 ];
 
@@ -58,6 +56,7 @@ export const listadoSalas = [
     apta_proyector: false,
     imagen_space: space_1,
     destacado: true,
+    habilitado: true,
   },
   {
     id: 10002,
@@ -66,6 +65,7 @@ export const listadoSalas = [
     apta_proyector: true,
     imagen_space: space_2,
     destacado: false,
+    habilitado: true,
   },
   {
     id: 10003,
@@ -74,6 +74,7 @@ export const listadoSalas = [
     apta_proyector: true,
     imagen_space: space_3,
     destacado: true,
+    habilitado: true,
   },
   {
     id: 10004,
@@ -82,6 +83,7 @@ export const listadoSalas = [
     apta_proyector: true,
     imagen_space: space_4,
     destacado: true,
+    habilitado: true,
   },
   {
     id: 10005,
@@ -90,6 +92,7 @@ export const listadoSalas = [
     apta_proyector: false,
     imagen_space: space_5,
     destacado: false,
+    habilitado: true,
   },
   {
     id: 10006,
@@ -98,6 +101,7 @@ export const listadoSalas = [
     apta_proyector: false,
     imagen_space: space_6,
     destacado: true,
+    habilitado: false,
   },
   {
     id: 10007,
@@ -106,6 +110,7 @@ export const listadoSalas = [
     apta_proyector: false,
     imagen_space: space_7,
     destacado: true,
+    habilitado: true,
   },
   {
     id: 10008,
@@ -114,6 +119,7 @@ export const listadoSalas = [
     apta_proyector: false,
     imagen_space: space_8,
     destacado: false,
+    habilitado: false,
   },
   {
     id: 10009,
@@ -122,6 +128,7 @@ export const listadoSalas = [
     apta_proyector: false,
     imagen_space: space_9,
     destacado: false,
+    habilitado: true,
   },
   {
     id: 10010,
@@ -130,6 +137,7 @@ export const listadoSalas = [
     apta_proyector: false,
     imagen_space: space_10,
     destacado: true,
+    habilitado: true,
   },
 ];
 
@@ -180,7 +188,7 @@ export const listadoReservas = [
     sala_id: 10005,
     sala_fecha: "2025-6-22",
     sala_hora: "08:30",
-    usaurio_id: 2000,
+    usaurio_id: 3000,
     sala_estado: true,
   },
 ];

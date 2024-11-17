@@ -21,7 +21,7 @@ export default function MisReservas() {
   };
 
   return (
-    <div className="subContainer misReservas">
+    <div className="subContainer tableData">
       <h1>Mis Reservas</h1>
 
       <table>

@@ -32,9 +32,6 @@ export default function BotoneraDashboard() {
                 <Link to="/gestionespacios" className="btnBase">
                   Gestionar Espacios
                 </Link>
-                <Link to="/gestionhorarios" className="btnBase">
-                  Gestionar Horarios
-                </Link>
               </div>
               <a
                 className="btnBase disrruptive"

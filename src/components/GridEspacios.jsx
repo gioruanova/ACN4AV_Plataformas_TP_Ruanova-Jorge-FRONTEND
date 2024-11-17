@@ -42,39 +42,45 @@ export default function GridEspacios() {
 
   return (
     <>
-      {listadoSalas.map((space) => (
-        <div className="card-salas" key={space.id}>
-          {space.destacado && <span className="tag-destacado">Destacada</span>}{" "}
-          <div className="imagen-space">
-            <img src={space.imagen_space} alt={space.name} />
-          </div>
-          <div className={is_logueado ? "card-content" : "card-content noBtn"}>
-            <h4>{space.name}</h4>
-            <div className="bottom-data">
-              <span>Capacidad: {space.capacidad}</span>
-              <span>
-                Apta para proyector: {space.apta_proyector ? "Sí" : "No"}
-              </span>
+      {listadoSalas
+        .filter((space) => space.habilitado) 
+        .map((space) => (
+          <div className="card-salas" key={space.id}>
+            {space.destacado && (
+              <span className="tag-destacado">Destacada</span>
+            )}{" "}
+            <div className="imagen-space">
+              <img src={space.imagen_space} alt={space.name} />
+            </div>
+            <div
+              className={is_logueado ? "card-content" : "card-content noBtn"}
+            >
+              <h4>{space.name}</h4>
+              <div className="bottom-data">
+                <span>Capacidad: {space.capacidad}</span>
+                <span>
+                  Apta para proyector: {space.apta_proyector ? "Sí" : "No"}
+                </span>
 
-              <button
-                className="btnBase"
-                onClick={() =>
-                  handleReservar(
-                    space.id,
-                    is_logueado,
-                    setMessage,
-                    setToastType,
-                    setToastStyle,
-                    navigate
-                  )
-                }
-              >
-                Reservar
-              </button>
+                <button
+                  className="btnBase"
+                  onClick={() =>
+                    handleReservar(
+                      space.id,
+                      is_logueado,
+                      setMessage,
+                      setToastType,
+                      setToastStyle,
+                      navigate
+                    )
+                  }
+                >
+                  Reservar
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
       <CustomToast message={message} toastStyle={toastStyle} type={toastType} />
     </>
   );

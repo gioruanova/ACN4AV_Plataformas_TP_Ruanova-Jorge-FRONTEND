@@ -19,7 +19,7 @@ export default function GestionReservas() {
   };
 
   return (
-    <div className="subContainer misReservas">
+    <div className="subContainer tableData">
       <h1>Gestionar Reservas</h1>
 
       <table>
@@ -51,8 +51,8 @@ export default function GestionReservas() {
                   {reserva.sala_estado ? "Activa" : "Cancelada"}
                 </td>
 
-                <td>
-                  {reserva.sala_estado && (
+                <td className="btn-container">
+                {reserva.sala_estado && (
                     <button
                       className="btnBase"
                       onClick={() => handleCancelar(reserva.reserva_id)}

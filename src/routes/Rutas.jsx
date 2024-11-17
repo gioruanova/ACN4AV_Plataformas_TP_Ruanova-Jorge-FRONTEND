@@ -11,7 +11,6 @@ import Contacto from "../pages/Contacto";
 import Dashboard from "../pages/Dashboard";
 
 import GestionUsuarios from "../pages/GestionUsuarios";
-import GestionHorarios from "../pages/GestionHorarios";
 import GestionReservas from "../pages/GestionReservas";
 import GestionEspacios from "../pages/GestionEspacios";
 
@@ -34,7 +33,6 @@ export default function Rutas() {
       <Route path="/espacio/:id" element={<ProtectedRoute> <EspacioDetail /> </ProtectedRoute> }/>
 
       <Route path="/gestionusuarios" element={<ProtectedRoute adminOnly={true}> <GestionUsuarios /> </ProtectedRoute> }/>
-      <Route path="/gestionhorarios" element={<ProtectedRoute adminOnly={true}> <GestionHorarios /> </ProtectedRoute> }/>
       <Route path="/gestionreservas" element={<ProtectedRoute adminOnly={true}> <GestionReservas /> </ProtectedRoute> }/>
       <Route path="/gestionespacios" element={<ProtectedRoute adminOnly={true}> <GestionEspacios /> </ProtectedRoute> }/>
 
