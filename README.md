@@ -22,7 +22,9 @@
 
  ## 📔 ¿Alguien dijo librerias?
  - Toastify
- - Swiper JS
+ - Swiper
+ - Animate
+ - React Router Dom
 
 <i>(Provisoriamente, en la ruta `/data/Database.jsx` se encontraran las credenciales de acceso ficticio e informacion de reservas/salas para poder simular la interaccion.)<i>
 
