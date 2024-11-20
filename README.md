@@ -16,6 +16,15 @@
   - Gestion reservas
   - Gestion espacios
   - Gestion usuarios
+ 
+## ➡️ Proximos pasos
+- Desarrollo backend en Express JS + MySql
+  - Login + Seguridad
+  - Gestion de reservas (usuario y admin)
+    - Usuario > Generar / cancelar reserva
+    - Admin > Cancelar reserva
+  - Gestion de espacios (habilitar/deshabilitar)
+  - Gestion de usuarios (dar/quitar privilegios admin)
 
  ## 💻 ¿Como es posible? Gracias a...
  - Vite
