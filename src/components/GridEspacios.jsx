@@ -40,10 +40,16 @@ export default function GridEspacios() {
   const [toastStyle, setToastStyle] = useState({});
   const [toastType, setToastType] = useState("success");
   const [filterProyector, setFilterProyector] = useState(null); // revisar si esto va por el back, a confirmar
+  const [filterDestacada, setFilterDestacada] = useState(null); // revisar si esto va por el back, a confirmar
 
-  const handleFilterChange = (e) => {
+  const handleProyectorChange = (e) => {
     const value = e.target.value;
     setFilterProyector(value === "all" ? null : value === "true");
+  };
+
+  const handleDestacadaChange = (e) => {
+    const value = e.target.value;
+    setFilterDestacada(value === "all" ? null : value === "true");
   };
 
   return (
@@ -52,12 +58,23 @@ export default function GridEspacios() {
         <label htmlFor="filtros-salas">Filtrar por proyector: </label>
         <select
           id="filtros-salas"
-          onChange={handleFilterChange}
+          onChange={handleProyectorChange}
           value={filterProyector === null ? "all" : filterProyector.toString()}
         >
           <option value="all">Todos</option>
           <option value="true">Aptos para proyector</option>
           <option value="false">No aptos para proyector</option>
+        </select>
+
+        <label htmlFor="filtros-destacada">Destacadas ?: </label>
+        <select
+          id="filtros-destacada"
+          onChange={handleDestacadaChange}
+          value={filterDestacada === null ? "all" : filterDestacada.toString()}
+        >
+          <option value="all">Todos</option>
+          <option value="true">Si</option>
+          <option value="false">No</option>
         </select>
       </div>
 
@@ -68,6 +85,11 @@ export default function GridEspacios() {
             filterProyector === null
               ? true
               : space.apta_proyector === filterProyector
+          )
+          .filter((space) =>
+            filterDestacada === null
+              ? true
+              : space.destacado === filterDestacada
           )
           .map((space) => (
             <div className="card-salas" key={space.id}>
