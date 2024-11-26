@@ -68,5 +68,9 @@
 
 .filtros-salas{
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
+  select{
+    max-width: 300px;
+    width: 100%;
+  }
 }

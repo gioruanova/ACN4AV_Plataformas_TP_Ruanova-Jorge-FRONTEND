@@ -65,8 +65,9 @@ export default function GridEspacios() {
           <option value="true">Aptos para proyector</option>
           <option value="false">No aptos para proyector</option>
         </select>
-
-        <label htmlFor="filtros-destacada">Destacadas ?: </label>
+      </div>
+      <div className="filtros-salas inputWrap">
+        <label htmlFor="filtros-destacada">Destacadas ? </label>
         <select
           id="filtros-destacada"
           onChange={handleDestacadaChange}
