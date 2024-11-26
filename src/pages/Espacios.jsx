@@ -5,7 +5,7 @@ export default function Espacios() {
   useAnimationContent();
 
   return (
-    <div className="grid-salas subContainer">
+    <div >
       <GridEspacios />
     </div>
   );

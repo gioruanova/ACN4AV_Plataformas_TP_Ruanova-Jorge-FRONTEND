@@ -39,48 +39,74 @@ export default function GridEspacios() {
   const [message, setMessage] = useState("");
   const [toastStyle, setToastStyle] = useState({});
   const [toastType, setToastType] = useState("success");
+  const [filterProyector, setFilterProyector] = useState(null); // revisar si esto va por el back, a confirmar
+
+  const handleFilterChange = (e) => {
+    const value = e.target.value;
+    setFilterProyector(value === "all" ? null : value === "true");
+  };
 
   return (
     <>
-      {listadoSalas
-        .filter((space) => space.habilitado) 
-        .map((space) => (
-          <div className="card-salas" key={space.id}>
-            {space.destacado && (
-              <span className="tag-destacado">Destacada</span>
-            )}{" "}
-            <div className="imagen-space">
-              <img src={space.imagen_space} alt={space.name} />
-            </div>
-            <div
-              className={is_logueado ? "card-content" : "card-content noBtn"}
-            >
-              <h4>{space.name}</h4>
-              <div className="bottom-data">
-                <span>Capacidad: {space.capacidad}</span>
-                <span>
-                  Apta para proyector: {space.apta_proyector ? "Sí" : "No"}
-                </span>
+      <div className="filtros-salas inputWrap">
+        <label htmlFor="filtros-salas">Filtrar por proyector: </label>
+        <select
+          id="filtros-salas"
+          onChange={handleFilterChange}
+          value={filterProyector === null ? "all" : filterProyector.toString()}
+        >
+          <option value="all">Todos</option>
+          <option value="true">Aptos para proyector</option>
+          <option value="false">No aptos para proyector</option>
+        </select>
+      </div>
 
-                <button
-                  className="btnBase"
-                  onClick={() =>
-                    handleReservar(
-                      space.id,
-                      is_logueado,
-                      setMessage,
-                      setToastType,
-                      setToastStyle,
-                      navigate
-                    )
-                  }
-                >
-                  Reservar
-                </button>
+      <div className="grid-salas subContainer">
+        {listadoSalas
+          .filter((space) => space.habilitado)
+          .filter((space) =>
+            filterProyector === null
+              ? true
+              : space.apta_proyector === filterProyector
+          )
+          .map((space) => (
+            <div className="card-salas" key={space.id}>
+              {space.destacado && (
+                <span className="tag-destacado">Destacada</span>
+              )}{" "}
+              <div className="imagen-space">
+                <img src={space.imagen_space} alt={space.name} />
+              </div>
+              <div
+                className={is_logueado ? "card-content" : "card-content noBtn"}
+              >
+                <h4>{space.name}</h4>
+                <div className="bottom-data">
+                  <span>Capacidad: {space.capacidad}</span>
+                  <span>
+                    Apta para proyector: {space.apta_proyector ? "Sí" : "No"}
+                  </span>
+
+                  <button
+                    className="btnBase"
+                    onClick={() =>
+                      handleReservar(
+                        space.id,
+                        is_logueado,
+                        setMessage,
+                        setToastType,
+                        setToastStyle,
+                        navigate
+                      )
+                    }
+                  >
+                    Reservar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
       <CustomToast message={message} toastStyle={toastStyle} type={toastType} />
     </>
   );

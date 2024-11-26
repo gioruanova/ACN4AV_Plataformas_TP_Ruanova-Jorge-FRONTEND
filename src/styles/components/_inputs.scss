@@ -27,6 +27,7 @@
     box-sizing: border-box;
     resize: none;
     font-family: $mainFont;
+    cursor: pointer;
   }
 
   label {
@@ -62,4 +63,10 @@
       margin: 0 10px;
     }
   }
+}
+
+
+.filtros-salas{
+  max-width: 1000px;
+  margin: 0 auto;
 }
