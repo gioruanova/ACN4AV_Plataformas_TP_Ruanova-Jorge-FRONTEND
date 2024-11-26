@@ -5,29 +5,60 @@
 - Central de reservas es una aplicacion que permite a los usuarios registrados la reserva de espacios de trabajo.
 - Adicionalmente cuenta con un perfil de administrador que podra habilitar/deshabilitar dichas salas, gestionar las reservas, y mantenimiento de usuarios.
 
-## 🔧 Hay curiosidad, lo se. Empecemos por...
-```bash
-1. npm install
-```
-
-```bash
-2. npm run dev
-```
- `3. A investigar...`
+## 🚶 Flujos desarrollados funcionando
+- Login (por perfiles)
+- Perfil usuario
+  - Generacion de reserva
+  - Visualizacion de reservas
+  - Cancelacion de reserva
+  - Visualizacion de datos personales
+- Perfil admin
+  - Gestion reservas
+  - Gestion espacios
+  - Gestion usuarios
+ 
+## ➡️ Proximos pasos
+- Desarrollo backend en Express JS + MySql
+  - Login + Seguridad
+  - Gestion de reservas (usuario y admin)
+    - Usuario > Generar / cancelar reserva
+    - Admin > Cancelar reserva
+  - Gestion de espacios (habilitar/deshabilitar)
+  - Gestion de usuarios (dar/quitar privilegios admin)
 
  ## 💻 ¿Como es posible? Gracias a...
  - Vite
  - React JS
- - Compilacion mediante SCSS
+ - Compilacion de estilos via SCSS
 
- ## 📔 ¿Alguien dijo librerias?
+ ## 🎇 ¿Alguien dijo librerias?
  - Toastify
  - Swiper
  - Animate
  - React Router Dom
 
-<i>(Provisoriamente, en la ruta `/data/Database.jsx` se encontraran las credenciales de acceso ficticio e informacion de reservas/salas para poder simular la interaccion.)<i>
-
+## ❗Antes de continuar...
+<i>Provisoriamente, en la ruta `/data/Database.jsx` se encontraran las credenciales de acceso ficticio e informacion de reservas/salas para poder simular la interaccion.<i>
 
 ## 🚀 ¿Hay Live Demo? Lo pedis, lo tenes...
 - Aca esta el live demo > **[Central de Reservas](https://central-reservas.vercel.app/)**
+
+## 🔧 Hay curiosidad, lo se. Empecemos por...
+```bash
+1. git clone https://github.com/gioruanova/ACN4AV_Plataformas_TP_Ruanova-Jorge.git
+```
+
+```bash
+2. npm install
+```
+
+```bash
+3. npm run dev
+```
+  `4. A investigar...`
+
+* ✉️ <i> Si tenes alguna duda o consulta, no dudes en **[contactarme](https://github.com/gioruanova)** <i>
+
+
+## 📔 Desarrollo por:
+:trollface: **[Jorge Ruanova](https://github.com/gioruanova)**
