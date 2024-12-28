@@ -17,7 +17,7 @@
   - Gestion espacios ( habilitar / deshabilitar - destacar / cancelar destacado)
   - Gestion usuarios ( perfiles admin y usuario)
 
- ## 💻 ¿Como es posible? Gracias a...
+ ## 🚀 ¿Como es posible? Gracias a...
  - Vite
  - React JS
  - Compilacion de estilos via SCSS
@@ -31,9 +31,6 @@
 
 ## ❗Antes de continuar...
 <i>En la ruta `/data/Database.jsx` se encontraran las credenciales de acceso para interactuar con la base de datos.<i>
-
-## 🚀 ¿Hay Live Demo? Lo pedis, lo tenes...
-- Aca esta el live demo estatico > **[Central de Reservas](https://central-reservas.vercel.app/)**
 
 ## 🔧 Hay curiosidad, lo se. Empecemos por...
 ```bash
