@@ -14,17 +14,16 @@ const MainSwiper = ({ classNameSwiper, slidesNumber }) => {
   const [salasDisponibles, setSalasDisponibles] = useState([]);
   let urlFetch = `${apiKey}listadosalas`;
 
-
   useEffect(() => {
     getEspacios();
-  }, );
+  });
 
   const getEspacios = async () => {
     try {
       const response = await axios.get(urlFetch);
       setSalasDisponibles(response.data.results);
     } catch (error) {
-      console.log(error.message);
+      return error;
     }
   };
   return (

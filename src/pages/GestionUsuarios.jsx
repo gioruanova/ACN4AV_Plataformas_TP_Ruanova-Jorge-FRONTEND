@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { getUsuarios, generarAdmin, quitarAdmin } from "../helpers/fetchUser";
+import { getUsuarios, generarAdmin, quitarAdmin } from "../apis/fetchUser";
 import BotonVolver from "../components/BotonVolver";
 
 export default function GestionUsuarios() {

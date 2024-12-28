@@ -1,5 +1,5 @@
 import { useAuth } from "../contexts/AuthContext";
-import { fetchUser } from "../helpers/fetchUser";
+import { fetchUser } from "../apis/fetchUser";
 import { useState, useEffect } from "react";
 import BotonVolver from "../components/BotonVolver";
 

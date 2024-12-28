@@ -8,7 +8,7 @@ import {
   habilitarSala,
   destacarSala,
   quitarDestacado
-} from "../helpers/fetchSalas";
+} from "../apis/fetchSalas";
 
 export default function GestionEspacios() {
   const { token } = useAuth();

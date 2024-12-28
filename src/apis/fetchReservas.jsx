@@ -60,6 +60,8 @@ export async function getReservaUsuario(userId, token) {
 
     return listadoReservas;
   } catch (error) {
+    console.log(error.response.data.message);
+
     console.error("Error al obtener las reservas:", error);
     throw error;
   }

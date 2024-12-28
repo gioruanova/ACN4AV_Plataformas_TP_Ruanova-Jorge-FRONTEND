@@ -25,7 +25,7 @@ export default function SwiperDestacados({classNameSwiper }) {
       const response = await axios.get(urlFetch);
       setSalasDisponibles(response.data.results);
     } catch (error) {
-      console.log(error.message);
+      return error;
     }
   };
   return (

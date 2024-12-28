@@ -1,35 +1,27 @@
-# 🌠 TP Plataformas de Desarrollo
-- Trabajo practico realizado en Vite React JS
+# 🌠 Plataformas de Desarrollo
+- Desarrollo Final realizado en Vite React JS
 
 ## ❓ ¿Que es Central de reservas?
 - Central de reservas es una aplicacion que permite a los usuarios registrados la reserva de espacios de trabajo.
 - Adicionalmente cuenta con un perfil de administrador que podra habilitar/deshabilitar dichas salas, gestionar las reservas, y mantenimiento de usuarios.
 
 ## 🚶 Flujos desarrollados funcionando
-- Login (por perfiles)
+- Login (por perfiles) + seguridad
 - Perfil usuario
   - Generacion de reserva
   - Visualizacion de reservas
   - Cancelacion de reserva
   - Visualizacion de datos personales
 - Perfil admin
-  - Gestion reservas
-  - Gestion espacios
-  - Gestion usuarios
- 
-## ➡️ Proximos pasos
-- Desarrollo backend en Express JS + MySql
-  - Login + Seguridad
-  - Gestion de reservas (usuario y admin)
-    - Usuario > Generar / cancelar reserva
-    - Admin > Cancelar reserva
-  - Gestion de espacios (habilitar/deshabilitar)
-  - Gestion de usuarios (dar/quitar privilegios admin)
+  - Gestion reservas ( cancelacion y reactivacion)
+  - Gestion espacios ( habilitar / deshabilitar - destacar / cancelar destacado)
+  - Gestion usuarios ( perfiles admin y usuario)
 
  ## 💻 ¿Como es posible? Gracias a...
  - Vite
  - React JS
  - Compilacion de estilos via SCSS
+ - Backend en Express JS y MYSQL
 
  ## 🎇 ¿Alguien dijo librerias?
  - Toastify
@@ -38,10 +30,10 @@
  - React Router Dom
 
 ## ❗Antes de continuar...
-<i>Provisoriamente, en la ruta `/data/Database.jsx` se encontraran las credenciales de acceso ficticio e informacion de reservas/salas para poder simular la interaccion.<i>
+<i>En la ruta `/data/Database.jsx` se encontraran las credenciales de acceso para interactuar con la base de datos.<i>
 
 ## 🚀 ¿Hay Live Demo? Lo pedis, lo tenes...
-- Aca esta el live demo > **[Central de Reservas](https://central-reservas.vercel.app/)**
+- Aca esta el live demo estatico > **[Central de Reservas](https://central-reservas.vercel.app/)**
 
 ## 🔧 Hay curiosidad, lo se. Empecemos por...
 ```bash

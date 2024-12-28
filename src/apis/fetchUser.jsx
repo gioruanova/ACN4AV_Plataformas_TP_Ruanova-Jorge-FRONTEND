@@ -83,7 +83,6 @@ export async function generarAdmin(userId, token) {
         },
       }
     );
-    console.log(response);
     
     return response;
   } catch (error) {

@@ -22,6 +22,21 @@ export async function getSalas() {
   }
 }
 
+export async function mostrarSalaId(salaId, token) {
+  try {
+    const response = await axios.get(`${apiKey}sala-id/${salaId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response;
+  } catch (error) {
+    console.error("Error al obtener las salas:", error);
+    throw error;
+  }
+}
+
 export async function deshabilitarSala(salaId, token) {
   try {
     const response = await axios.put(
@@ -39,7 +54,6 @@ export async function deshabilitarSala(salaId, token) {
     throw error;
   }
 }
-
 
 export async function habilitarSala(salaId, token) {
   try {
@@ -76,7 +90,6 @@ export async function destacarSala(salaId, token) {
   }
 }
 
-
 export async function quitarDestacado(salaId, token) {
   try {
     const response = await axios.put(
@@ -91,6 +104,21 @@ export async function quitarDestacado(salaId, token) {
     return response;
   } catch (error) {
     console.error("Error al obtener las salas:", error);
+    throw error;
+  }
+}
+
+export async function generarReserva(reservaData, token) {
+  try {
+    const response = await axios.post(`${apiKey}crear-reserva`, reservaData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error al crear la reserva:", error);
     throw error;
   }
 }

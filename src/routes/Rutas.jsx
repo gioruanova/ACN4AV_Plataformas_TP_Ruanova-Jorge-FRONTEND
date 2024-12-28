@@ -30,7 +30,7 @@ export default function Rutas() {
       <Route path="/login" element={<Login />} />
 
       <Route path="/dashboard" element={<ProtectedRoute is_logueado={true}> <Dashboard /> </ProtectedRoute>}/>
-      <Route path="/espacio/:id" element={<ProtectedRoute is_logueado={true}> <EspacioDetail /> </ProtectedRoute> }/>
+      <Route path="/espacio/:id" element={ <EspacioDetail />  }/>
 
       <Route path="/gestionusuarios" element={<ProtectedRoute adminOnly={true}> <GestionUsuarios /> </ProtectedRoute> }/>
       <Route path="/gestionreservas"  element={<ProtectedRoute adminOnly={true}> <GestionReservas /> </ProtectedRoute> }/>

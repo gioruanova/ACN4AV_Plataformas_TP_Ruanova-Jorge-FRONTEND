@@ -3,7 +3,7 @@ import {
   getReservas,
   reactivarReserva,
   cancelarReserva,
-} from "../helpers/fetchReservas";
+} from "../apis/fetchReservas";
 import { useAuth } from "../contexts/AuthContext";
 import BotonVolver from "../components/BotonVolver";
 
@@ -22,7 +22,7 @@ export default function GestionReservas() {
     };
 
     getReservasFetch();
-  }, [token]);
+  }, [token, reservas]);
 
   // Cancelar Reserva
   const handleCancelar = async (salaId) => {

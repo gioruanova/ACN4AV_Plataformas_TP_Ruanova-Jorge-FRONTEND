@@ -1,7 +1,7 @@
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchUser } from "../helpers/fetchUser";
+import { fetchUser } from "../apis/fetchUser";
 
 function handleLogout(e, logout, navigate) {
   e.preventDefault();
@@ -58,7 +58,7 @@ export default function BotoneraDashboard() {
             </>
           ) : (
             <>
-              <h1>Bienvenido User {userName}</h1>
+              <h1>Bienvenido {userName}</h1>
 
               <div className="btn-container btn-user">
                 <Link to="/misdatos" className="btnBase">

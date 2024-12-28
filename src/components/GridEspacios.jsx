@@ -1,64 +1,32 @@
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import CustomToast from "../hooks/customToast";
-
-import useAnimationContent from "../hooks/useAnimationContent";
-
-import axios from "axios";
 import { apiKey } from "../data/Database";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
-// Función para manejar la reserva
-function handleReservar(
-  id,
-  is_logueado,
-  setMessage,
-  setToastType,
-  setToastStyle,
-  navigate
-) {
-  if (!is_logueado) {
-    setMessage("Debe estar logueado para poder reserva un espacio");
-    setToastType("error");
-    setToastStyle({
-      backgroundColor: "#8f3939",
-      color: "white",
-      borderRadius: "10px",
-      fontSize: "16px",
-      padding: "10px",
-      duration: 3000,
-    });
-  } else {
-    navigate(`/espacio/${id}`);
-  }
-}
-
+import useAnimationContent from "../hooks/useAnimationContent";
 export default function GridEspacios() {
   useAnimationContent();
 
   const { is_logueado } = useAuth();
   const navigate = useNavigate();
 
-  const [message, setMessage] = useState("");
-  const [toastStyle, setToastStyle] = useState({});
-  const [toastType, setToastType] = useState("success");
-  
-  const [filterProyector, setFilterProyector] = useState(null); // revisar si esto va por el back, a confirmar
-  const [filterDestacada, setFilterDestacada] = useState(null); // revisar si esto va por el back, a confirmar
+  const [filterProyector, setFilterProyector] = useState(null);
+  const [filterDestacada, setFilterDestacada] = useState(null);
 
   const [salasDisponibles, setSalasDisponibles] = useState([]);
   let urlFetch = `${apiKey}listadosalas`;
 
   useEffect(() => {
     getEspacios();
-  }, );
+  });
 
   const getEspacios = async () => {
     try {
       const response = await axios.get(urlFetch);
       setSalasDisponibles(response.data.results);
     } catch (error) {
-      console.log(error.message);
+      return error;
     }
   };
 
@@ -71,6 +39,10 @@ export default function GridEspacios() {
     const value = e.target.value;
     setFilterDestacada(value === "all" ? null : value === "true");
   };
+
+  function handleReservar(id) {
+    navigate(`/espacio/${id}`);
+  }
 
   return (
     <>
@@ -136,24 +108,16 @@ export default function GridEspacios() {
                   <button
                     className="btnBase"
                     onClick={() =>
-                      handleReservar(
-                        space.sala_id,
-                        is_logueado,
-                        setMessage,
-                        setToastType,
-                        setToastStyle,
-                        navigate
-                      )
+                      handleReservar(space.sala_id, is_logueado, navigate)
                     }
                   >
-                    Reservar
+                    Ver Mas
                   </button>
                 </div>
               </div>
             </div>
           ))}
       </div>
-      <CustomToast message={message} toastStyle={toastStyle} type={toastType} />
     </>
   );
 }

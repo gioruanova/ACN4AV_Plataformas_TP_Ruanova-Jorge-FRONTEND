@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getReservaUsuario, cancelarReserva } from "../helpers/fetchReservas";
-import { fetchUser } from "../helpers/fetchUser";
+import { getReservaUsuario, cancelarReserva } from "../apis/fetchReservas";
+import { fetchUser } from "../apis/fetchUser";
 import { useAuth } from "../contexts/AuthContext";
 import BotonVolver from "../components/BotonVolver";
 
@@ -37,9 +37,7 @@ export default function MisReservas() {
     }
   }, [userId, token]);
 
-  useEffect(() => {
-    console.log(reservas);
-  }, [reservas]);
+
 
   // Cancelar Reserva
   const handleCancelar = async (salaId) => {

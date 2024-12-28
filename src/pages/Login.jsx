@@ -77,6 +77,7 @@ export default function Login() {
         setErrorClass("show"); // agrego la clase
         errorEffect(setErrorClass); // quito la clase
         console.log(error);
+        
       }
     }
 

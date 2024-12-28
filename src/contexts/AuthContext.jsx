@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
           setRole(response.data.isAdmin ? true : false);
         }
       } catch (error) {
-        console.log(error);
+        return error;
       } finally {
         setLoading(false);
       }

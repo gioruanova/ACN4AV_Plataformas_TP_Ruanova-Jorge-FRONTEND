@@ -1,18 +1,17 @@
+import { useAuth } from "../contexts/AuthContext";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
-import {
-  rangosHorarios,
-  listadoSalas,
-  // listadoReservas,
-} from "../data/Database";
-import useAnimationContent from "../hooks/useAnimationContent";
 import { useNavigate } from "react-router-dom";
-import CustomToast from "../hooks/customToast";
-import ValidarDisponibilidadEspacio from "../helpers/ValidarDisponibilidadEspacio";
+import { useState, useEffect } from "react";
+
+import { mostrarSalaId, generarReserva } from "../apis/fetchSalas";
+import { fetchUser } from "../apis/fetchUser";
+import { getHorarios } from "../apis/fetchMisc";
+
+import useAnimationContent from "../hooks/useAnimationContent";
 import Spinner from "../components/Spinner";
+import CustomToast from "../hooks/customToast";
+
 import BotonVolver from "../components/BotonVolver";
-import ReservarEspacio from "../helpers/ReservarEspacio";
-import { ObtenerUsuario } from "../helpers/ObtenerUsuario";
 
 // manejar reserva
 function handleReserva(
@@ -25,30 +24,23 @@ function handleReserva(
   setToastType,
   salaElegida,
   setIsLoading,
-  idUsuario
+  idUsuario,
+  token
 ) {
   e.preventDefault();
+
+  const reservaData = {
+    sala_id: salaElegida,
+    sala_fecha: fecha,
+    sala_hora: hora,
+    usuario_id: idUsuario,
+    reserva_estado: true,
+  };
 
   // spinner
   setIsLoading(true);
 
   setTimeout(() => {
-    // Lógica de reserva
-    if (ValidarDisponibilidadEspacio(salaElegida, fecha, hora)) {
-      setMessage("El espacio no está disponible en esa fecha y hora.");
-      setToastType("error");
-      setToastStyle({
-        backgroundColor: "#8f3939",
-        color: "white",
-        borderRadius: "10px",
-        fontSize: "16px",
-        padding: "10px",
-        duration: 3000,
-      });
-      setIsLoading(false);
-      return;
-    }
-
     if (hora === "" || fecha === "") {
       setMessage(
         "Debes completar la fecha y hora para poder reservar el espacio."
@@ -64,21 +56,43 @@ function handleReserva(
       });
       setIsLoading(false);
     } else {
-      setMessage(
-        `La reserva para el dia ${fecha} a las ${hora} con el id ${salaElegida} ha sido realizada con éxito.`
-      );
-      setToastType("success");
-      setToastStyle({
-        backgroundColor: "#1b791f",
-        color: "white",
-        borderRadius: "10px",
-        fontSize: "16px",
-        padding: "10px",
-        duration: 3000,
-      });
-
-      ReservarEspacio(salaElegida, fecha, hora, idUsuario);
-
+      const reservarSala = async () => {
+        try {
+          const response = await generarReserva(reservaData, token);
+          if (response.success) {
+            setMessage(
+              response.message +
+                " para el dia " +
+                fecha +
+                " en el horario " +
+                hora
+            );
+            setToastType("success");
+            setToastStyle({
+              backgroundColor: "#1b791f",
+              color: "white",
+              borderRadius: "10px",
+              fontSize: "16px",
+              padding: "10px",
+              duration: 3000,
+            });
+          }
+        } catch (error) {
+          setMessage(error.response.data.message);
+          setToastType("error");
+          setToastStyle({
+            backgroundColor: "#8f3939",
+            color: "white",
+            borderRadius: "10px",
+            fontSize: "16px",
+            padding: "10px",
+            duration: 3000,
+          });
+          setIsLoading(false);
+          return;
+        }
+      };
+      reservarSala();
       setTimeout(() => {
         navigate("/dashboard");
       }, 3200);
@@ -97,15 +111,60 @@ export default function EspacioDetail() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [fecha, setFecha] = useState("");
-  const [hora, setHora] = useState("");
+  const [hora, setHora] = useState("08:00");
 
-  // const usuarioActual = ObtenerUsuario();
-  // const idUsuario = usuarioActual.id;
-
+  const { token, is_logueado } = useAuth();
   const { id } = useParams();
-  const space = listadoSalas.find((space) => space.sala_id === parseInt(id));
+  const [espacio, setEspacio] = useState({});
+  const [userId, setUserid] = useState({});
+  const [horarios, setHorarios] = useState([]);
 
-  if (!space) {
+  // Get sala por params
+  useEffect(() => {
+    const getSala = async () => {
+      try {
+        const data = await mostrarSalaId(parseInt(id, 10), token);
+        setEspacio(data.data.result);
+      } catch (error) {
+        console.error("Error la sala:", error);
+      }
+    };
+
+    getSala();
+  }, [id, token]);
+
+  // Get user logueado
+  useEffect(() => {
+    const getUser = async () => {
+      if (is_logueado && token) {
+        try {
+          const data = await fetchUser(token);
+          setUserid(data.id_usuario);
+        } catch (error) {
+          console.error("Error al obtener el usuario:", error);
+        }
+      }
+    };
+  
+    getUser();
+  }, [is_logueado, token]);
+  
+
+  // Get rangos horarios
+  useEffect(() => {
+    const getRangosHorarios = async () => {
+      try {
+        const data = await getHorarios(token);
+        setHorarios(data.data.results);
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
+
+    getRangosHorarios();
+  }, [token]);
+
+  if (espacio.length === 0) {
     return <p>Espacio no encontrado</p>;
   }
 
@@ -113,28 +172,30 @@ export default function EspacioDetail() {
   today.setDate(today.getDate() + 1);
   const minDate = today.toISOString().split("T")[0];
 
-  const salaElegida = space.sala_id;
+  const salaElegida = espacio.sala_id;
 
   return (
     <>
       {isLoading && <Spinner />}
 
       <div className="reservar-sala subContainer">
-        <div className="card-salas" key={space.sala_id}>
-          {space.destacado && <span className="tag-destacado">Destacada</span>}
+        <div className="card-salas" key={espacio.sala_id}>
+          {espacio.destacado ? (
+            <span className="tag-destacado">Destacada</span>
+          ) : null}
           <div className="imagen-space">
             <img
-              src={space.imagen_space}
-              alt={space.name}
+              src={`../images/spaces/${espacio.image_space}.jpg`}
+              alt={espacio.name}
               className="imagen-space"
             />
           </div>
           <div className="card-content">
-            <h4>{space.name}</h4>
+            <h4>{espacio.name}</h4>
             <div className="bottom-data">
-              <span>Capacidad: {space.capacidad}</span>
+              <span>Capacidad: {espacio.capacidad}</span>
               <span>
-                Apta para proyector: {space.apta_proyector ? "Sí" : "No"}
+                Apta para proyector: {espacio.apta_proyector ? "Sí" : "No"}
               </span>
             </div>
           </div>
@@ -168,33 +229,36 @@ export default function EspacioDetail() {
                 value={hora}
                 onChange={(e) => setHora(e.target.value)}
               >
-                {rangosHorarios.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
+                {horarios.map((time, index) => (
+                  <option key={index} value={time.horario}>
+                    {time.horario}
                   </option>
                 ))}
               </select>
             </div>
             <div className="btn-container">
-              <button
-                className="btnBase"
-                onClick={(e) =>
-                  handleReserva(
-                    e,
-                    fecha,
-                    hora,
-                    navigate,
-                    setMessage,
-                    setToastStyle,
-                    setToastType,
-                    salaElegida,
-                    setIsLoading,
-                    idUsuario
-                  )
-                }
-              >
-                Reservar
-              </button>
+              {is_logueado ? (
+                <button
+                  className="btnBase"
+                  onClick={(e) =>
+                    handleReserva(
+                      e,
+                      fecha,
+                      hora,
+                      navigate,
+                      setMessage,
+                      setToastStyle,
+                      setToastType,
+                      salaElegida,
+                      setIsLoading,
+                      userId,
+                      token
+                    )
+                  }
+                >
+                  Reservar
+                </button>
+              ) : null}
 
               <BotonVolver ruta={"espacios"} />
             </div>
