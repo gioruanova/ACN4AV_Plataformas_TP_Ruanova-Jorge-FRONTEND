@@ -17,7 +17,7 @@
   - Gestion espacios ( habilitar / deshabilitar - destacar / cancelar destacado)
   - Gestion usuarios ( perfiles admin y usuario)
 
- ## 🚀 ¿Como es posible? Gracias a...
+ ## 💻 ¿Como es posible? Gracias a...
  - Vite
  - React JS
  - Compilacion de estilos via SCSS
@@ -31,6 +31,9 @@
 
 ## ❗Antes de continuar...
 <i>En la ruta `/data/Database.jsx` se encontraran las credenciales de acceso para interactuar con la base de datos.<i>
+
+## 🚀 Endpoints
+- Para poder ver el desarrollo del backend hace click **[Acá](https://github.com/gioruanova/ACN4AV_Plataformas_TP_Ruanova-Jorge-BACKEND)**
 
 ## 🔧 Hay curiosidad, lo se. Empecemos por...
 ```bash
