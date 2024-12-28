@@ -1,30 +1,62 @@
-import { createContext, useContext, useState } from "react";
+import axios from "axios";
+import { createContext, useContext, useState, useEffect } from "react";
+import { apiKey } from "../data/Database";
 
 const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export function AuthProvider({ children }) {
   const [is_logueado, setIsLogueado] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [userId, setUserId] = useState(null);
+  const [token, setToken] = useState(null);
+  const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const login = (isAdmin, userId) => {
+  useEffect(() => {
+    doRefreshToken();
+  }, []);
+
+  const doRefreshToken = async () => {
+    if (localStorage.getItem("token")) {
+      try {
+        const response = await axios.get(`${apiKey}refresh-token`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (response.data.success) {
+          setIsLogueado(true);
+          setToken(response.data.accessToken);
+          setRole(response.data.isAdmin ? true : false);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+
+    } else {
+      setLoading(false);
+    }
+  };
+
+  const login = ({ accessToken, refreshToken, isAdmin }) => {
     setIsLogueado(true);
-    setIsAdmin(isAdmin);
-    setUserId(userId);
+    setToken(accessToken);
+    setRole(isAdmin); 
+    localStorage.setItem("token", refreshToken);
   };
 
   const logout = () => {
     setIsLogueado(false);
-    setIsAdmin(false);
-    setUserId(null);
+    setToken(null);
+    setRole(null);
+    localStorage.removeItem("token");
   };
 
   return (
-    <AuthContext.Provider
-      value={{ is_logueado, isAdmin, userId, login, logout }}
-    >
-      {children}
+    <AuthContext.Provider value={{ is_logueado, role, token, login, logout }}>
+      {loading ? <div> Cargando... </div> : children}
     </AuthContext.Provider>
   );
 }

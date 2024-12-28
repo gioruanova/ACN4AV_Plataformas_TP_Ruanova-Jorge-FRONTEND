@@ -12,6 +12,6 @@ export default function ReservarEspacio(
     sala_fecha: fecha_reserva,
     sala_hora: hora_reserva,
     usaurio_id: usuario_reserva,
-    sala_estado: true,
+    reserva_estado: true,
   });
 }

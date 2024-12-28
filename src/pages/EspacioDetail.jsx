@@ -99,11 +99,11 @@ export default function EspacioDetail() {
   const [fecha, setFecha] = useState("");
   const [hora, setHora] = useState("");
 
-  const usuarioActual = ObtenerUsuario();
-  const idUsuario = usuarioActual.id;
+  // const usuarioActual = ObtenerUsuario();
+  // const idUsuario = usuarioActual.id;
 
   const { id } = useParams();
-  const space = listadoSalas.find((space) => space.id === parseInt(id));
+  const space = listadoSalas.find((space) => space.sala_id === parseInt(id));
 
   if (!space) {
     return <p>Espacio no encontrado</p>;
@@ -113,14 +113,14 @@ export default function EspacioDetail() {
   today.setDate(today.getDate() + 1);
   const minDate = today.toISOString().split("T")[0];
 
-  const salaElegida = space.id;
+  const salaElegida = space.sala_id;
 
   return (
     <>
       {isLoading && <Spinner />}
 
       <div className="reservar-sala subContainer">
-        <div className="card-salas" key={space.id}>
+        <div className="card-salas" key={space.sala_id}>
           {space.destacado && <span className="tag-destacado">Destacada</span>}
           <div className="imagen-space">
             <img

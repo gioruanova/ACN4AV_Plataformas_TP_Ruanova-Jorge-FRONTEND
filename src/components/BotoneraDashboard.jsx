@@ -1,7 +1,7 @@
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-
-import { ObtenerUsuario } from "../helpers/ObtenerUsuario";
+import { useEffect, useState } from "react";
+import { fetchUser } from "../helpers/fetchUser";
 
 function handleLogout(e, logout, navigate) {
   e.preventDefault();
@@ -10,17 +10,32 @@ function handleLogout(e, logout, navigate) {
 }
 
 export default function BotoneraDashboard() {
-  const { is_logueado, isAdmin, logout } = useAuth();
+  const { is_logueado, logout, role } = useAuth();
   const navigate = useNavigate();
-  const usuarioActual = ObtenerUsuario();
+  const { token } = useAuth();
+
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const data = await fetchUser(token);
+        setUserName(data.nombre + " " + data.apellido); 
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
+
+    getUser();
+  }, [token]);
 
   return (
     <>
       {is_logueado ? (
         <>
-          {isAdmin ? (
+          {role ? (
             <>
-              <h1>Bienvenido {usuarioActual.nombre} {usuarioActual.apellido}</h1>
+              <h1>Bienvenido {userName}</h1>
 
               <div className="btn-container">
                 <Link to="/gestionusuarios" className="btnBase">
@@ -43,8 +58,7 @@ export default function BotoneraDashboard() {
             </>
           ) : (
             <>
-              <h1>Bienvenido {usuarioActual.nombre} {usuarioActual.apellido}</h1>
-  
+              <h1>Bienvenido User {userName}</h1>
 
               <div className="btn-container btn-user">
                 <Link to="/misdatos" className="btnBase">

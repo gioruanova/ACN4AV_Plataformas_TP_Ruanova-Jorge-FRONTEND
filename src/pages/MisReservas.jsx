@@ -1,73 +1,108 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getReservaUsuario, cancelarReserva } from "../helpers/fetchReservas";
+import { fetchUser } from "../helpers/fetchUser";
+import { useAuth } from "../contexts/AuthContext";
 import BotonVolver from "../components/BotonVolver";
-import { listadoReservas, listadoSalas } from "../data/Database";
-import { ObtenerUsuario } from "../helpers/ObtenerUsuario";
 
 export default function MisReservas() {
-  const usuarioActual = ObtenerUsuario();
+  const { token } = useAuth();
+  const [reservas, setReservas] = useState([]);
+  const [userId, setUserId] = useState();
 
-  const [reservas, setReservas] = useState(listadoReservas);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const data = await fetchUser(token);
+        setUserId(data.user_id);
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
 
-  const handleCancelar = (reservaId) => {
-    const reserva = listadoReservas.find(
-      (reserva) => reserva.reserva_id === reservaId
-    );
+    getUser();
+  }, [token]);
 
-    if (reserva && reserva.sala_estado) {
-      reserva.sala_estado = false;
+  useEffect(() => {
+    if (userId) {
+      const getReservasFetch = async () => {
+        try {
+          const data = await getReservaUsuario(userId, token);
+          setReservas(data);
+        } catch (error) {
+          console.error("Error al obtener las reservas:", error);
+        }
+      };
+
+      getReservasFetch();
     }
+  }, [userId, token]);
 
-    setReservas([...listadoReservas]);
+  useEffect(() => {
+    console.log(reservas);
+  }, [reservas]);
+
+  // Cancelar Reserva
+  const handleCancelar = async (salaId) => {
+    try {
+      await cancelarReserva(salaId, token);
+      const updateReservas = await getReservaUsuario(userId, token);
+      setReservas(updateReservas);
+    } catch (error) {
+      console.error("Error al cancelar reserva:", error);
+    }
   };
 
   return (
     <div className="subContainer tableData">
       <h1>Mis Reservas</h1>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Reserva</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Espacio</th>
-            <th>Estado</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reservas
-            .filter((reserva) => reserva.usaurio_id === usuarioActual.id)
-            .map((reserva) => {
-              const sala = listadoSalas.find(
-                (sala) => sala.id === reserva.sala_id
-              );
+      {reservas.length === 0 ? (
+        <div className="subContainer tableData">
+          <p>No hay reservas disponibles.</p>
+        </div>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Reserva</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Espacio</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {reservas.map((reserv) => {
               return (
-                <tr key={reserva.reserva_id}>
-                  <td>{reserva.reserva_id}</td>
-                  <td>{reserva.sala_fecha}</td>
-                  <td>{reserva.sala_hora}</td>
-                  <td>{sala ? sala.name : "No disponible"}</td>
+                <tr key={reserv.reserva_id}>
+                  <td>{reserv.reserva_id}</td>
+                  <td>{reserv.reserva_sala_fecha}</td>
+                  <td>{reserv.reserva_sala_hora}</td>
+                  <td>{reserv.reserva_espacio_nombre}</td>
 
-                  <td className={reserva.sala_estado ? "active" : "cancelled"}>
-                    {reserva.sala_estado ? "Activa" : "Cancelada"}
+                  <td
+                    className={reserv.reserva_estado ? "active" : "cancelled"}
+                  >
+                    {reserv.reserva_estado ? "Activa" : "Cancelada"}
                   </td>
 
                   <td>
-                    {reserva.sala_estado && (
+                    {reserv.reserva_estado ? (
                       <button
                         className="btnBase"
-                        onClick={() => handleCancelar(reserva.reserva_id)}
+                        onClick={() => handleCancelar(reserv.reserva_id)}
                       >
                         Cancelar
                       </button>
-                    )}
+                    ) : null}
                   </td>
                 </tr>
               );
             })}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      )}
 
       <BotonVolver ruta={"dashboard"} />
     </div>

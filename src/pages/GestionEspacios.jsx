@@ -1,29 +1,80 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BotonVolver from "../components/BotonVolver";
+import { useAuth } from "../contexts/AuthContext";
 
-import { listadoSalas as initialSalas } from "../data/Database";
+import {
+  getSalas,
+  deshabilitarSala,
+  habilitarSala,
+  destacarSala,
+  quitarDestacado
+} from "../helpers/fetchSalas";
 
 export default function GestionEspacios() {
-  const [habilitacion, setHabilitacion] = useState(initialSalas);
+  const { token } = useAuth();
+  const [listadoSalas, setListadoSalas] = useState([]);
 
-  const handleCancelar = (salaId) => {
-    const sala = habilitacion.find((sala) => sala.id === salaId);
+  // traer las salas
+  useEffect(() => {
+    const getSala = async () => {
+      try {
+        const data = await getSalas();
+        setListadoSalas(data);
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
 
-    if (sala && sala.habilitado) {
-      sala.habilitado = false;
+    getSala();
+  }, []);
+
+  // -----------------------------
+  // deshabilitar sala
+  const handleDeshabilitarSala = async (salaId) => {
+    try {
+      await deshabilitarSala(salaId, token);
+      const updatedSalas = await getSalas();
+      setListadoSalas(updatedSalas);
+    } catch (error) {
+      console.error("Error al deshabilitar la sala:", error);
     }
-
-    setHabilitacion([...habilitacion]);
   };
 
-  const handleHabilitar = (salaId) => {
-    const sala = habilitacion.find((sala) => sala.id === salaId);
-
-    if (sala && !sala.habilitado) {
-      sala.habilitado = true;
+  // -----------------------------
+  // habilitar sala
+  const handleHabilitarSala = async (salaId) => {
+    try {
+      await habilitarSala(salaId, token);
+      const updatedSalas = await getSalas();
+      setListadoSalas(updatedSalas);
+    } catch (error) {
+      console.error("Error al deshabilitar la sala:", error);
     }
+  };
 
-    setHabilitacion([...habilitacion]);
+  // -----------------------------
+  // destacar sala
+  const handleDestacar = async (salaId) => {
+    try {
+      await destacarSala(salaId, token);
+      const updatedSalas = await getSalas();
+      setListadoSalas(updatedSalas);
+    } catch (error) {
+      console.error("Error al destacar la sala:", error);
+    }
+  };
+
+  
+  // -----------------------------
+  // destacar sala
+  const handleQuitarDestacar = async (salaId) => {
+    try {
+      await quitarDestacado(salaId, token);
+      const updatedSalas = await getSalas();
+      setListadoSalas(updatedSalas);
+    } catch (error) {
+      console.error("Error al destacar la sala:", error);
+    }
   };
 
   return (
@@ -42,27 +93,45 @@ export default function GestionEspacios() {
           </tr>
         </thead>
         <tbody>
-          {habilitacion.map((sala) => (
-            <tr key={sala.id}>
-              <td>{sala.id}</td>
-              <td>{sala.name}</td>
-              <td>{sala.capacidad}</td>
-              <td>{sala.destacado ? "Si" : "No"}</td>
-              <td className={sala.habilitado ? "active" : "cancelled"}>
-                {sala.habilitado ? "Si" : "No"}
+          {listadoSalas.map((sala) => (
+            <tr key={sala.sala_id}>
+              <td>{sala.sala_id}</td>
+              <td>{sala.sala_nombre}</td>
+              <td>{sala.sala_capacidad}</td>
+              <td className={sala.sala_destacada ? "active" : "cancelled"}>
+                {sala.sala_destacada ? "Si" : "No"}
+              </td>
+              <td className={sala.sala_habilitada ? "active" : "cancelled"}>
+                {sala.sala_habilitada ? "Si" : "No"}
               </td>
               <td className="btn-container">
-                {sala.habilitado ? (
+                {sala.sala_destacada ? (
                   <button
                     className="btnBase disrruptive"
-                    onClick={() => handleCancelar(sala.id)}
+                    onClick={() => handleQuitarDestacar(sala.sala_id)}
+                  >
+                    Quitar Destacado
+                  </button>
+                ) : (
+                  <button
+                    className="btnBase"
+                    onClick={() => handleDestacar(sala.sala_id)}
+                  >
+                    Destacar
+                  </button>
+                )}
+
+                {sala.sala_habilitada ? (
+                  <button
+                    className="btnBase disrruptive"
+                    onClick={() => handleDeshabilitarSala(sala.sala_id)}
                   >
                     Desabilitar
                   </button>
                 ) : (
                   <button
                     className="btnBase"
-                    onClick={() => handleHabilitar(sala.id)}
+                    onClick={() => handleHabilitarSala(sala.sala_id)}
                   >
                     Habilitar
                   </button>

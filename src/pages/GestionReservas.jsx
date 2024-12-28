@@ -1,21 +1,49 @@
+import { useState, useEffect } from "react";
+import {
+  getReservas,
+  reactivarReserva,
+  cancelarReserva,
+} from "../helpers/fetchReservas";
+import { useAuth } from "../contexts/AuthContext";
 import BotonVolver from "../components/BotonVolver";
 
-import { useState } from "react";
-import { listadoReservas, listadoSalas } from "../data/Database";
-
 export default function GestionReservas() {
-  const [reservas, setReservas] = useState(listadoReservas);
+  const { token } = useAuth();
+  const [reservas, setReservas] = useState([]);
 
-  const handleCancelar = (reservaId) => {
-    const reserva = listadoReservas.find(
-      (reserva) => reserva.reserva_id === reservaId
-    );
+  useEffect(() => {
+    const getReservasFetch = async () => {
+      try {
+        const data = await getReservas(token);
+        setReservas(data);
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
 
-    if (reserva && reserva.sala_estado) {
-      reserva.sala_estado = false;
+    getReservasFetch();
+  }, [token]);
+
+  // Cancelar Reserva
+  const handleCancelar = async (salaId) => {
+    try {
+      await cancelarReserva(salaId, token);
+      const updateReservas = await getReservas(token);
+      setReservas(updateReservas);
+    } catch (error) {
+      console.error("Error al cancelar reserva:", error);
     }
+  };
 
-    setReservas([...listadoReservas]);
+  // Reactivar Reserva
+  const handleReactivar = async (salaId) => {
+    try {
+      await reactivarReserva(salaId, token);
+      const updateReservas = await getReservas(token);
+      setReservas(updateReservas);
+    } catch (error) {
+      console.error("Error al reactivar reserva:", error);
+    }
   };
 
   return (
@@ -36,28 +64,32 @@ export default function GestionReservas() {
         </thead>
         <tbody>
           {reservas.map((reserva) => {
-            const sala = listadoSalas.find(
-              (sala) => sala.id === reserva.sala_id
-            );
             return (
               <tr key={reserva.reserva_id}>
                 <td>{reserva.reserva_id}</td>
-                <td>{reserva.sala_fecha}</td>
-                <td>{reserva.sala_hora}</td>
-                <td>{reserva.usaurio_id}</td>
-                <td>{sala ? sala.name : "No disponible"}</td>
+                <td>{reserva.reserva_sala_fecha}</td>
+                <td>{reserva.reserva_sala_hora}</td>
+                <td>{reserva.reserva_usuario_id}</td>
+                <td>{reserva.reserva_espacio_nombre}</td>
 
-                <td className={reserva.sala_estado ? "active" : "cancelled"}>
-                  {reserva.sala_estado ? "Activa" : "Cancelada"}
+                <td className={reserva.reserva_estado ? "active" : "cancelled"}>
+                  {reserva.reserva_estado ? "Activa" : "Cancelada"}
                 </td>
 
                 <td className="btn-container">
-                {reserva.sala_estado && (
+                  {reserva.reserva_estado ? (
                     <button
-                      className="btnBase"
+                      className="btnBase disrruptive"
                       onClick={() => handleCancelar(reserva.reserva_id)}
                     >
                       Cancelar
+                    </button>
+                  ) : (
+                    <button
+                      className="btnBase"
+                      onClick={() => handleReactivar(reserva.reserva_id)}
+                    >
+                      Reactivar
                     </button>
                   )}
                 </td>

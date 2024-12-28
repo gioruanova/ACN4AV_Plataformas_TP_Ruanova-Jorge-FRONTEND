@@ -1,31 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { getUsuarios, generarAdmin, quitarAdmin } from "../helpers/fetchUser";
 import BotonVolver from "../components/BotonVolver";
-import { listadoUsuarios as innitialUsers } from "../data/Database";
-import { ObtenerUsuario } from "../helpers/ObtenerUsuario";
 
 export default function GestionUsuarios() {
-  const usuarioActual = ObtenerUsuario();
+  const [listadoUsuarios, setListadoUsuarios] = useState([]);
+  const { token } = useAuth();
 
-  const [esAdmin, setEsAdmin] = useState(innitialUsers);
+  useEffect(() => {
+    const getUsuariosLista = async () => {
+      try {
+        const data = await getUsuarios(token);
+        setListadoUsuarios(data);
+      } catch (error) {
+        console.error("Error al obtener usuarios:", error);
+      }
+    };
 
-  const cancelarUsuario = (usuarioId) => {
-    const usuario = esAdmin.find((usuario) => usuario.id === usuarioId);
+    getUsuariosLista();
+  }, [token]);
 
-    if (usuario && usuario.isAdmin) {
-      usuario.isAdmin = false;
+  const handlerCancelarAdmin = async (userId) => {
+    try {
+      await quitarAdmin(userId, token);
+      const updateUsuarios = await getUsuarios(token);
+      setListadoUsuarios(updateUsuarios);
+    } catch (error) {
+      console.error("Error al gestionar usuario:", error);
     }
-
-    setEsAdmin([...esAdmin]);
   };
 
-  const habilitarUsuario = (usuarioId) => {
-    const usuario = esAdmin.find((usuario) => usuario.id === usuarioId);
-
-    if (usuario && !usuario.isAdmin) {
-      usuario.isAdmin = true;
+  const handlerGenerarAdmin = async (userId) => {
+    try {
+      await generarAdmin(userId, token);
+      const updateUsuarios = await getUsuarios(token);
+      setListadoUsuarios(updateUsuarios);
+    } catch (error) {
+      console.error("Error al gestionar usuario:", error);
     }
-
-    setEsAdmin([...esAdmin]);
   };
 
   return (
@@ -45,34 +57,34 @@ export default function GestionUsuarios() {
           </tr>
         </thead>
         <tbody>
-          {esAdmin.map(
+          {listadoUsuarios.map(
             (user) =>
-              user.id !== usuarioActual.id && (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.dni}</td>
-                  <td>{user.email}</td>
+              !user.isCurrentUser && (
+                <tr key={user.user_id}>
+                  <td>{user.user_id}</td>
+                  <td>{user.user_dni}</td>
+                  <td>{user.user_email}</td>
                   <td>
-                    {user.nombre} {user.apellido}
+                    {user.user_nombre} {user.user_apellido}
                   </td>
 
-                  <td className={user.isAdmin ? "active" : "cancelled"}>
-                    {user.isAdmin ? "Si" : "No"}
+                  <td className={user.user_isAdmin ? "active" : "cancelled"}>
+                    {user.user_isAdmin ? "Si" : "No"}
                   </td>
                   <td className="btn-container">
-                    {user.isAdmin ? (
+                    {user.user_isAdmin ? (
                       <button
-                        className="btnBase"
-                        onClick={() => cancelarUsuario(user.id)}
+                        className="btnBase disrruptive"
+                        onClick={() => handlerCancelarAdmin(user.user_id)}
                       >
-                        Hacer Admin
+                        Quitar Admin
                       </button>
                     ) : (
                       <button
-                        className="btnBase disrruptive"
-                        onClick={() => habilitarUsuario(user.id)}
+                        className="btnBase"
+                        onClick={() => handlerGenerarAdmin(user.user_id)}
                       >
-                        Quitar Admin
+                        Hacer Admin
                       </button>
                     )}
                   </td>

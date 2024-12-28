@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAnimationContent from "../hooks/useAnimationContent";
 import BotonVolver from "../components/BotonVolver";
-import { LoginUsuario } from "../helpers/LoginUsuario";
 import { useState } from "react";
+import axios from "axios";
+import { apiKey } from "../data/Database";
 
 function errorEffect(setClass) {
   setTimeout(() => {
@@ -36,31 +37,46 @@ function validarIngreso(user, pass, setError, setErrorClass) {
 
 export default function Login() {
   useAnimationContent();
-
-  const { login } = useAuth();
+  const { login, is_logueado } = useAuth();
   const navigate = useNavigate();
+  
+  if (is_logueado) {
+    navigate("/dashboard");
+  }
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [errorClass, setErrorClass] = useState("");
 
-  const handlerLogin = (e) => {
+  const handlerLogin = async (e) => {
     e.preventDefault();
 
     if (validarIngreso(username, password, setError, setErrorClass)) {
-      const resultado = LoginUsuario(username, password);
+      try {
+        const response = await axios.post(`${apiKey}login`, {
+          email: username,
+          password: password,
+        });
 
-      if (resultado.success) {
-        if (resultado.isAdmin) {
-          login(true, resultado.user.id);
+        if (response.data.success) {
+          login({
+            accessToken: response.data.accessToken,
+            refreshToken: response.data.refreshToken,
+            isAdmin: response.data.isAdmin,
+          });
+
           navigate("/dashboard");
         } else {
-          login(false, resultado.user.id);
-          navigate("/dashboard");
+          setError(response.data.message); // seteo el mensaje
+          setErrorClass("show"); // agrego la clase
+          errorEffect(setErrorClass); // quito la clase
         }
-      } else {
-        alert("Usuario o contraseña incorrectos");
+      } catch (error) {
+        setError("Ha habido un error. Intente luego"); // seteo el mensaje
+        setErrorClass("show"); // agrego la clase
+        errorEffect(setErrorClass); // quito la clase
+        console.log(error);
       }
     }
 
@@ -78,9 +94,9 @@ export default function Login() {
               <input
                 id="username"
                 name="username"
-                type="text"
+                type="email"
                 value={username}
-                placeholder="(dni o email)"
+                placeholder="(ingrese su email)"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>

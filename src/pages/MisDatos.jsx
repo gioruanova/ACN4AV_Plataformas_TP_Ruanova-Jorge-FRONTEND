@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchUser } from "../helpers/fetchUser";
+import { useState, useEffect } from "react";
 import BotonVolver from "../components/BotonVolver";
-import { ObtenerUsuario } from "../helpers/ObtenerUsuario";
 
 export default function MisDatos() {
-  const usuarioActual = ObtenerUsuario();
+  const { token } = useAuth();
 
-  const [nombre, setNombre] = useState(usuarioActual.nombre);
-  const [apellido, setApellido] = useState(usuarioActual.apellido);
-  const [email, setEmail] = useState(usuarioActual.email);
-  const [dni, setDni] = useState(usuarioActual.dni);
-  const [password, setPassword] = useState(usuarioActual.password);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const data = await fetchUser(token);
+        setNombre(data.nombre);
+        setApellido(data.apellido);
+        setEmail(data.email);
+        setDni(data.user_dni);
+      } catch (error) {
+        console.error("Error al obtener el usuario:", error);
+      }
+    };
+
+    getUser();
+  }, [token]);
+
+  const [nombre, setNombre] = useState();
+  const [apellido, setApellido] = useState();
+  const [email, setEmail] = useState();
+  const [dni, setDni] = useState();
 
   const handlerCambioDatos = (e) => {
     e.preventDefault();
     alert(
-      `cambiando datos a: \nNombre: ${nombre} \nApellido: ${apellido} \nEmail: ${email} \nDNI: ${dni} \nContraseña: ${password} \n`
+      `cambiando datos a: \nNombre: ${nombre} \nApellido: ${apellido} \nEmail: ${email} \nDNI: ${dni}`
     );
   };
 
@@ -54,15 +70,6 @@ export default function MisDatos() {
             type="text"
             value={dni}
             onChange={(e) => setDni(e.target.value)}
-          />
-        </div>
-
-        <div className="inputWrap ">
-          <label htmlFor="dni">Nueva contraseña:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
       </form>

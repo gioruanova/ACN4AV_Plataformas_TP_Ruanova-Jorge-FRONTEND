@@ -1,12 +1,33 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+
+import axios from "axios";
+import { apiKey } from "../data/Database";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-export default function SwiperDestacados({ listadoSalas, classNameSwiper }) {
+export default function SwiperDestacados({classNameSwiper }) {
+  const [salasDisponibles, setSalasDisponibles] = useState([]);
+  let urlFetch = `${apiKey}listadosalas`;
+
+
+  useEffect(() => {
+    getEspacios();
+  }, );
+  
+
+  const getEspacios = async () => {
+    try {
+      const response = await axios.get(urlFetch);
+      setSalasDisponibles(response.data.results);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <Swiper
       modules={[Pagination, Autoplay]}
@@ -18,7 +39,7 @@ export default function SwiperDestacados({ listadoSalas, classNameSwiper }) {
         disableOnInteraction: false,
       }}
       speed={1000}
-      loopedSlides={listadoSalas.length > 3 ? 3 : listadoSalas.length}
+      loopedSlides={salasDisponibles.length > 3 ? 3 : salasDisponibles.length}
       breakpoints={{
         640: {
           slidesPerView: 3,
@@ -36,17 +57,18 @@ export default function SwiperDestacados({ listadoSalas, classNameSwiper }) {
       autoHeight={true}
       className={classNameSwiper}
     >
-      {listadoSalas.map(
-        (image, index) =>
-          image.destacado && (
+      {salasDisponibles.map(
+        (item, index) =>
+          item.destacado ? (
             <SwiperSlide key={index}>
               <img
-                src={image.imagen_space}
-                alt={`${image.name} con capacidad para ${image.capacidad} personas`}
-                title={`${image.name} con capacidad para ${image.capacidad} personas`}
+                src={`../images/spaces/${item.image_space}.jpg`}
+                alt={`${item.name} con capacidad para ${item.capacidad} personas`}
+                title={`${item.name} con capacidad para ${item.capacidad} personas`}
               />
             </SwiperSlide>
-          )
+          ) :
+          null
       )}
     </Swiper>
   );

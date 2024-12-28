@@ -41,6 +41,7 @@
       transition: $defaultTransition;
       @include glassEffect();
       border-radius: 0;
+      justify-items: center;
     }
 
     th:nth-child(3),

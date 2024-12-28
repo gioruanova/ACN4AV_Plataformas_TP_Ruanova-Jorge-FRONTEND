@@ -29,15 +29,15 @@ export default function Rutas() {
       <Route path="/contacto" element={<Contacto />} />
       <Route path="/login" element={<Login />} />
 
-      <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>}/>
-      <Route path="/espacio/:id" element={<ProtectedRoute> <EspacioDetail /> </ProtectedRoute> }/>
+      <Route path="/dashboard" element={<ProtectedRoute is_logueado={true}> <Dashboard /> </ProtectedRoute>}/>
+      <Route path="/espacio/:id" element={<ProtectedRoute is_logueado={true}> <EspacioDetail /> </ProtectedRoute> }/>
 
       <Route path="/gestionusuarios" element={<ProtectedRoute adminOnly={true}> <GestionUsuarios /> </ProtectedRoute> }/>
-      <Route path="/gestionreservas" element={<ProtectedRoute adminOnly={true}> <GestionReservas /> </ProtectedRoute> }/>
+      <Route path="/gestionreservas"  element={<ProtectedRoute adminOnly={true}> <GestionReservas /> </ProtectedRoute> }/>
       <Route path="/gestionespacios" element={<ProtectedRoute adminOnly={true}> <GestionEspacios /> </ProtectedRoute> }/>
 
-      <Route path="/misdatos" element={<ProtectedRoute> <MisDatos /> </ProtectedRoute> }/>
-      <Route path="/misreservas" element={<ProtectedRoute> <MisReservas /> </ProtectedRoute> }/>
+      <Route path="/misdatos" element={<ProtectedRoute is_logueado={true}> <MisDatos /> </ProtectedRoute> }/>
+      <Route path="/misreservas" element={<ProtectedRoute is_logueado={true}> <MisReservas /> </ProtectedRoute> }/>
       
 
       <Route path="*" element={<Error404 />} />

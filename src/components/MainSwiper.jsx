@@ -2,11 +2,31 @@
 import { Navigation, Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import axios from "axios";
+import { apiKey } from "../data/Database";
+
+import { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
-const MainSwiper = ({ listadoSalas, classNameSwiper, slidesNumber }) => {
+const MainSwiper = ({ classNameSwiper, slidesNumber }) => {
+  const [salasDisponibles, setSalasDisponibles] = useState([]);
+  let urlFetch = `${apiKey}listadosalas`;
+
+
+  useEffect(() => {
+    getEspacios();
+  }, );
+
+  const getEspacios = async () => {
+    try {
+      const response = await axios.get(urlFetch);
+      setSalasDisponibles(response.data.results);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <Swiper
       modules={[Autoplay, EffectFade, Navigation]}
@@ -22,12 +42,12 @@ const MainSwiper = ({ listadoSalas, classNameSwiper, slidesNumber }) => {
       effect="fade"
       loop={true}
     >
-      {listadoSalas.map((image, index) => (
+      {salasDisponibles.map((item, index) => (
         <SwiperSlide key={index}>
           <img
-            src={image.imagen_space}
-            alt={`${image.name} con capacidad para ${image.capacidad} personas`}
-            title={`${image.name} con capacidad para ${image.capacidad} personas`}
+            src={`../images/spaces/${item.image_space}.jpg`}
+            alt={`${item.name} con capacidad para ${item.capacidad} personas`}
+            title={`${item.name} con capacidad para ${item.capacidad} personas`}
           />
         </SwiperSlide>
       ))}

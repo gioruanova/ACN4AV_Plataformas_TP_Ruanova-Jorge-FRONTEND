@@ -1,9 +1,12 @@
-import { listadoSalas } from "../data/Database";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CustomToast from "../hooks/customToast";
-import { useState } from "react";
+
 import useAnimationContent from "../hooks/useAnimationContent";
+
+import axios from "axios";
+import { apiKey } from "../data/Database";
+import { useEffect, useState } from "react";
 
 // Función para manejar la reserva
 function handleReservar(
@@ -39,8 +42,25 @@ export default function GridEspacios() {
   const [message, setMessage] = useState("");
   const [toastStyle, setToastStyle] = useState({});
   const [toastType, setToastType] = useState("success");
+  
   const [filterProyector, setFilterProyector] = useState(null); // revisar si esto va por el back, a confirmar
   const [filterDestacada, setFilterDestacada] = useState(null); // revisar si esto va por el back, a confirmar
+
+  const [salasDisponibles, setSalasDisponibles] = useState([]);
+  let urlFetch = `${apiKey}listadosalas`;
+
+  useEffect(() => {
+    getEspacios();
+  }, );
+
+  const getEspacios = async () => {
+    try {
+      const response = await axios.get(urlFetch);
+      setSalasDisponibles(response.data.results);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const handleProyectorChange = (e) => {
     const value = e.target.value;
@@ -80,7 +100,7 @@ export default function GridEspacios() {
       </div>
 
       <div className="grid-salas subContainer">
-        {listadoSalas
+        {salasDisponibles
           .filter((space) => space.habilitado)
           .filter((space) =>
             filterProyector === null
@@ -93,12 +113,15 @@ export default function GridEspacios() {
               : space.destacado === filterDestacada
           )
           .map((space) => (
-            <div className="card-salas" key={space.id}>
-              {space.destacado && (
+            <div className="card-salas" key={space.sala_id}>
+              {space.destacado ? (
                 <span className="tag-destacado">Destacada</span>
-              )}{" "}
+              ) : null}
               <div className="imagen-space">
-                <img src={space.imagen_space} alt={space.name} />
+                <img
+                  src={`../images/spaces/${space.image_space}.jpg`}
+                  alt={space.name}
+                />
               </div>
               <div
                 className={is_logueado ? "card-content" : "card-content noBtn"}
@@ -114,7 +137,7 @@ export default function GridEspacios() {
                     className="btnBase"
                     onClick={() =>
                       handleReservar(
-                        space.id,
+                        space.sala_id,
                         is_logueado,
                         setMessage,
                         setToastType,
