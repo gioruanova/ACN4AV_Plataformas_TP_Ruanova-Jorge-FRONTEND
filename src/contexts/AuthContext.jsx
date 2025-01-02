@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider value={{ is_logueado, role, token, login, logout }}>
-      {loading ? <div> Cargando... </div> : children}
+      {loading ? <div className="loader-inicial"> Cargando... </div> : children}
     </AuthContext.Provider>
   );
 }

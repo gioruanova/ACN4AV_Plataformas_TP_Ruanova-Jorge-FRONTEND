@@ -6,8 +6,6 @@ import { useState, useEffect } from "react";
 import { mostrarSalaId, generarReserva } from "../apis/fetchSalas";
 import { fetchUser } from "../apis/fetchUser";
 import { getHorarios } from "../apis/fetchMisc";
-
-import useAnimationContent from "../hooks/useAnimationContent";
 import Spinner from "../components/Spinner";
 import CustomToast from "../hooks/customToast";
 
@@ -102,7 +100,6 @@ function handleReserva(
 }
 
 export default function EspacioDetail() {
-  useAnimationContent();
   const navigate = useNavigate();
 
   const [message, setMessage] = useState("");
@@ -111,7 +108,7 @@ export default function EspacioDetail() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [fecha, setFecha] = useState("");
-  const [hora, setHora] = useState("08:00");
+  const [hora, setHora] = useState("");
 
   const { token, is_logueado } = useAuth();
   const { id } = useParams();
@@ -145,10 +142,9 @@ export default function EspacioDetail() {
         }
       }
     };
-  
+
     getUser();
   }, [is_logueado, token]);
-  
 
   // Get rangos horarios
   useEffect(() => {

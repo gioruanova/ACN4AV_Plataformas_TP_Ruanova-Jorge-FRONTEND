@@ -64,27 +64,32 @@
 
     tr:nth-child(even) {
       transition: $defaultTransition;
-      background-color: #cecfe6;
+      background-color: #423e4eaf;
+      &:hover,
+      &:focus-within {
+        background-color: #4e4a5caf;
+      }
     }
 
     tr:nth-child(odd) {
       transition: $defaultTransition;
-      background-color: #fafafaaf;
+      background-color: #272431af;
+      &:hover,
+      &:focus-within {
+        background-color: #363244af;
+      }
     }
 
-    tr:hover {
-      transition: $defaultTransition;
-      background-color: #c7c7c7;
-    }
+
 
     .active {
-      color: green;
-      font-weight: 800;
+      color: rgb(120, 214, 120);
+      font-weight: 700;
       text-transform: uppercase;
     }
 
     .cancelled {
-      color: red;
+      color: rgb(231, 89, 89);
       font-weight: 600;
       text-transform: uppercase;
     }

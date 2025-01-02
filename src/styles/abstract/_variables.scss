@@ -4,15 +4,15 @@ $white: #ffffff;
 $darkColor: #202020;
 $lightColor: #f1f1f1;
 
-$baseColor: #7ab3f2;
+$baseColor: #71a1d4;
 
-$mainColor: #45b1d1;
-$secondaryColor: #3577bc;
+$mainColor: $baseColor;
+$secondaryColor: $baseColor;
 $secondaryColorDark: #222c5c;
 
 $disabledDark: #dbdbdb;
 
-$alternativeColor: #ff9800;
+$alternativeColor: #f07888;
 
 $defaultTransition: all 300ms ease;
 
@@ -20,3 +20,7 @@ $default-size: 1200px;
 $border-radius-standard: 5px;
 
 $border-radius-contaienrs: $border-radius-standard + 4;
+
+
+
+$bg-color:#303030;

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import CustomToast from "../hooks/customToast";
-import useAnimationContent from "../hooks/useAnimationContent";
 
 
 // manejo del evento submit y notificaciones
@@ -58,7 +57,6 @@ function handleInputChange(e, formData, setFormData) {
 }
 
 export default function Contacto() {
-  useAnimationContent();
 
   const [formData, setFormData] = useState({
     name: "",

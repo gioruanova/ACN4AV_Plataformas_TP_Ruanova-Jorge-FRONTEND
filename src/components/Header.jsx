@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useMenu, useActiveLink } from "../hooks/useMenu";
 import Logo from "../assets/misc/logo.png";
+import { useEffect,useState } from "react";
 
 // Logica para logout
 function handleLogout(e, logout, navigate) {
@@ -13,17 +14,33 @@ function handleLogout(e, logout, navigate) {
 export default function Header() {
   const { is_logueado, logout } = useAuth();
   const navigate = useNavigate();
+  const [isScrolled, setIsScrolled] = useState('');
 
-  // Custom hooks para algunos efectos del menu
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled('scrolled');
+      } else {
+        setIsScrolled('');
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const { isOpen, toggleMenu, toggleMenuOut } = useMenu();
   const isActiveLink = useActiveLink();
 
   return (
     <div
-      className={"navbar " + (isOpen ? "openMenu" : "")}
+      className={`navbar ${isOpen ? "openMenu" : ""}${isScrolled}`} 
       onClick={toggleMenuOut}
     >
-      <div id="navegacion-conent">
+      <div id="navegacion-content">
         <div className="main-header">
           {isActiveLink("/") ? (
             <img

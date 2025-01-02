@@ -1,8 +1,6 @@
-import useAnimationContent from "../hooks/useAnimationContent";
 
 
 export default function LaEmpresa() {
-  useAnimationContent();
 
   return (
     <div className="subContainer">

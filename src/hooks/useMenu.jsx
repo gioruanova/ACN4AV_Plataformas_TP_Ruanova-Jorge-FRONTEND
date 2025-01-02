@@ -4,14 +4,18 @@ import { useLocation } from "react-router-dom";
 export function useMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const body = document.body;
+
   // Método para abrir y cerrar el menú
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    body.classList.add("menu-open");
   };
 
   const toggleMenuOut = () => {
     if (isOpen) {
       setIsOpen(!isOpen);
+      body.classList.remove("menu-open");
     }
   };
 
@@ -29,4 +33,3 @@ export function useActiveLink() {
 
   return isActiveLink;
 }
-

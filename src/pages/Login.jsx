@@ -1,7 +1,6 @@
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import useAnimationContent from "../hooks/useAnimationContent";
 import BotonVolver from "../components/BotonVolver";
 import { useState } from "react";
 import axios from "axios";
@@ -36,7 +35,6 @@ function validarIngreso(user, pass, setError, setErrorClass) {
 }
 
 export default function Login() {
-  useAnimationContent();
   const { login, is_logueado } = useAuth();
   const navigate = useNavigate();
   

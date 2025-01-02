@@ -1,12 +1,10 @@
 import MainImage from "../assets/main-image.png";
 import MainSwiper from "../components/MainSwiper";
 import SwiperDestacados from "../components/SwiperDestacados";
-import useAnimationContent from "../hooks/useAnimationContent";
 
 import Logo from "../assets/misc/logo.png";
 
 export default function Inicio() {
-  useAnimationContent();
 
   return (
     <div className="main-content subContainer">

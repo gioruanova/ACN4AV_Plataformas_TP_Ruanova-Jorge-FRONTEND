@@ -1,8 +1,8 @@
 @use "./fonts";
 
 $defaultFontFamily: fonts.$mainFont;
-$defaultFontColor: $secondaryColorDark;
-$headingColors: $secondaryColor;
+$defaultFontColor: $white;
+$headingColors: $white;
 $headingFontFamily: $mainFont2;
 
 $h1Size: px-to-rem(38);
@@ -54,7 +54,7 @@ h6 {
 }
 
 a {
-    color: $alternativeColor;
+    color: $white;
     font-weight: 600;
     text-decoration: none;
 

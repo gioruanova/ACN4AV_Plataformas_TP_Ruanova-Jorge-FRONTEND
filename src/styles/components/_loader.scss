@@ -7,56 +7,12 @@
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-
-  &::before {
-    content: "";
-    background-image: url("/images/clouds1.png");
-    background-repeat: repeat-x;
-    background-size: cover;
-    width: 200%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: -10rem;
-    z-index: -1;
-    animation: moveClouds 60s linear infinite;
-  }
-
-  &::after {
-    content: "";
-    background-image: url("/images/clouds2.png");
-    background-repeat: repeat-x;
-    background-size: contain;
-    width: 300%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    top: 0px;
-    left: 0;
-    z-index: -1;
-    animation: moveClouds2 40s linear infinite;
-  }
-}
-
-@keyframes moveClouds {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes moveClouds2 {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+  background-color: $bg-color;
+  background-image: url("/images/bg-2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .loader-inner {
@@ -64,17 +20,7 @@
   align-items: center;
   width: 100%;
   justify-content: center;
-  background: rgb(255, 255, 255);
   padding: 60px 10px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.8) 15%,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(255, 255, 255, 1) 60%,
-    rgba(255, 255, 255, 0.7987570028011204) 85%,
-    rgba(255, 255, 255, 0) 100%
-  );
 
   img {
     max-width: 150px;
@@ -97,7 +43,7 @@
       margin-right: 0;
       margin-bottom: 20px;
     }
-    h1{
+    h1 {
       text-align: center;
     }
   }

@@ -7,30 +7,12 @@
   row-gap: 1rem;
   padding-bottom: 1rem;
   position: relative;
-  background-image: url("/images/clouds1.png");
+  background-image: url("/images/bg-1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-  background-color: $baseColor;
-
-  &::before {
-    z-index: 5;
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 8rem;
-    background: rgb(255, 255, 255);
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 1) 67%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
-  @media screen and (max-width: 850px) {
-  }
+  background-color: $bg-color;
 }
 
 .content {
@@ -39,16 +21,13 @@
   height: 100%;
   justify-content: center;
   align-items: flex-start;
-  margin-top: 1rem;
+  margin-top: 8rem;
   flex-grow: 10;
 
   .subContainer {
     animation: fadeIn 1600ms ease-in-out;
     margin-top: 1rem;
-  }
-
-  @media screen and (max-width: 850px) {
-    margin-top: 8rem;
+    text-align: center;
   }
 }
 
@@ -142,7 +121,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  // width: 100%;
 }
 
 .error-busqueda {

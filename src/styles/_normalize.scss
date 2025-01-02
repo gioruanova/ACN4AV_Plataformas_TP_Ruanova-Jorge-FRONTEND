@@ -1,16 +1,20 @@
-
 body {
   min-width: 320px;
-  background-color: $baseColor;
   overflow: hidden;
   overflow-y: auto;
-  background-color: $baseColor;
+  background-color: $bg-color;
   margin: 0;
   padding: 0;
+  &.menu-open{
+    overflow: hidden;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 #root {
   margin: 0;
   padding: 0;
 }
-

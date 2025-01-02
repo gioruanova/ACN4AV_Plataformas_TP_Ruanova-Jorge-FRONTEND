@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import ErrorImagen from "../assets/misc/error.png";
-import useAnimationContent from "../hooks/useAnimationContent";
 
 export default function Error() {
-  useAnimationContent();
 
   return (
     <div className="pagina-error subContainer">

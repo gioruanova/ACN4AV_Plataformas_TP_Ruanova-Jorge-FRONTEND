@@ -3,21 +3,41 @@
   @include glassEffect();
   position: sticky;
   z-index: 9;
-  position: sticky;
-  top: 15px;
+  position: fixed;
   height: 85px;
   transition: $defaultTransition;
+  top: 15px;
 
   @media screen and (max-width: 850px) {
     position: fixed;
+    top: 0;
+    margin-top: 15px;
     &.openMenu {
+      background-color: rgba(15, 18, 46, 0.459);
       align-items: flex-start;
       transition: $defaultTransition;
+      width: 100%;
+      top: 0;
+      position: fixed;
+      margin-top: 0;
+    }
+  }
+  &.scrolled {
+    background-color: rgb(18 29 63 / 82%);
+    top: 0;
+    margin-top: 0;
+
+    @media screen and (max-width: 850px) {
+      width: 100%;
+      border-top: none;
+      border-left: 0;
+      border-right: 0;
+      border-radius: 0;
     }
   }
 }
 
-#navegacion-conent {
+#navegacion-content {
   display: flex;
   align-items: center;
   width: 100%;
@@ -50,7 +70,7 @@
         height: 4px;
         width: 30px;
         border-radius: $border-radius-standard;
-        background-color: $secondaryColorDark;
+        background-color: $white;
         margin: 3px 0;
         transition: $defaultTransition;
         position: relative;
@@ -131,7 +151,7 @@
     }
 
     a {
-      color: $secondaryColorDark;
+      color: $white;
       padding: 2px 15px;
       margin: 0 3px;
       border-radius: $border-radius-standard;
@@ -139,7 +159,7 @@
       box-sizing: border-box;
       &.currentStage {
         span {
-          border-bottom: 2px solid $secondaryColorDark;
+          border-bottom: 2px solid $white;
         }
       }
 
@@ -148,7 +168,7 @@
       }
 
       &:hover {
-        background-color: $baseColor;
+        background-color: $secondaryColor;
         transition: $defaultTransition;
         text-decoration: none;
         &.currentStage {
@@ -167,5 +187,5 @@
 .navbar.openMenu {
   justify-content: flex-start;
   transition: $defaultTransition;
-  height: 98vh;
+  height: 100vh;
 }

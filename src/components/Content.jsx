@@ -4,7 +4,7 @@ const Content = ({ children }) => {
   const { className } = useClass();
 
   return (
-    <div className={`content animate__animated ${className}`}>{children}</div>
+    <div className={`content${className}`}>{children}</div>
   );
 };
 

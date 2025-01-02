@@ -4,10 +4,7 @@ import { apiKey } from "../data/Database";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import useAnimationContent from "../hooks/useAnimationContent";
 export default function GridEspacios() {
-  useAnimationContent();
-
   const { is_logueado } = useAuth();
   const navigate = useNavigate();
 
@@ -111,7 +108,7 @@ export default function GridEspacios() {
                       handleReservar(space.sala_id, is_logueado, navigate)
                     }
                   >
-                    Ver Mas
+                    Leer mas
                   </button>
                 </div>
               </div>

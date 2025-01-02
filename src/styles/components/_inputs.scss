@@ -6,7 +6,6 @@
   align-items: center;
   margin: 5px 0 20px;
   position: relative;
-  
 
   @media screen and (max-width: 600px) {
     margin-bottom: 20px;
@@ -23,11 +22,15 @@
     height: 40px;
     padding: 0 10px;
     border-radius: $border-radius-standard;
-    box-shadow: 2px 2px 7px 1px #ddddddb0;
+    box-shadow: 2px 2px 7px 1px #393636b0;
     box-sizing: border-box;
     resize: none;
     font-family: $mainFont;
     cursor: pointer;
+    
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   label {
@@ -57,19 +60,18 @@
       width: 100%;
     }
   }
-  &.twoLines{
+  &.twoLines {
     margin-bottom: 20px;
-    input{
+    input {
       margin: 0 10px;
     }
   }
 }
 
-
-.filtros-salas{
+.filtros-salas {
   max-width: 1000px;
   margin: 0 auto 20px auto;
-  select{
+  select {
     max-width: 300px;
     width: 100%;
   }
